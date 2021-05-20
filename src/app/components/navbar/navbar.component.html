@@ -1,0 +1,83 @@
+<nav class="z-50 bg-white px-8 h-auto md:h-20 shadow-lg fixed w-full flex flex-col md:flex-row justify-between">
+    <div class="firstContainer flex md:my-auto justify-between">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 172 172"
+                style=" fill:#000000;">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#3b82f6">
+                        <path
+                            d="M80.625,10.75c-38.52723,0 -69.875,31.34777 -69.875,69.875c0,38.52724 31.34777,69.875 69.875,69.875c38.52724,0 69.875,-31.34776 69.875,-69.875c0,-38.52723 -31.34776,-69.875 -69.875,-69.875zM80.625,21.5c32.7175,0 59.125,26.4075 59.125,59.125c0,32.7175 -26.4075,59.125 -59.125,59.125c-32.7175,0 -59.125,-26.4075 -59.125,-59.125c0,-32.7175 26.4075,-59.125 59.125,-59.125zM53.75,53.75v26.875v10.75c0,8.84221 7.28279,16.125 16.125,16.125c4.12899,0 7.88386,-1.62689 10.75,-4.22021c2.86614,2.59332 6.62101,4.22021 10.75,4.22021c8.84221,0 16.125,-7.28279 16.125,-16.125v-10.75v-26.875h-10.75v26.875v10.75c0,3.02579 -2.34921,5.375 -5.375,5.375c-3.02579,0 -5.375,-2.34921 -5.375,-5.375v-26.875h-10.75v26.875c0,3.02579 -2.34921,5.375 -5.375,5.375c-3.02579,0 -5.375,-2.34921 -5.375,-5.375v-10.75v-26.875z">
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div (click)="toggleNavbar()" class="cursor-pointer burdger flex flex-col my-auto md:hidden">
+            <div class="1st-line h-0.5  w-5 mb-1 bg-blue-500"></div>
+            <div class="2nd-line h-0.5 w-5 mb-1 bg-blue-500"></div>
+            <div class="3rd-line h-0.5 w-5 bg-blue-500"></div>
+        </div>
+    </div>
+
+
+    <div class="secondContainer my-auto hidden md:block md:invisible">
+        <div>
+
+            <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-500 sm:text-sm">
+                        $
+                    </span>
+                </div>
+                <input type="text" name="price" id="price"
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                    placeholder="0.00">
+                <div class="absolute inset-y-0 right-0 flex items-center">
+                    <label for="currency" class="sr-only">Currency</label>
+                    <select id="currency" name="currency"
+                        class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
+                        <option>USD</option>
+                        <option>CAD</option>
+                        <option>EUR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div [ngClass]="{'hidden':showNavBar}" class="md:flex flex-col md:flex-row transition-all ">
+        <div class="md:hidden font-semibold my-2.5">Main Menu</div>
+        <div class="thirdContainer flex flex-col md:flex-row my-auto ">
+            <a class="link mx-3 " href="">Home</a>
+            <a class="link mx-3 " href="">Services</a>
+            <a class="link mx-3" href="">Orders</a>
+            <a class="link mx-3" href="">Entreprises</a>
+        </div>
+        <div *ngIf="profile" class="md:hidden font-semibold my-3">Profile</div>
+        <div *ngIf="!profile" class="md:hidden font-semibold my-3">Join us</div>
+
+        <div class="fourthContainer flex flex-col my-auto">
+            <div *ngIf="!profile" routerLink="/login" class="button ">Sign in</div>
+            <div *ngIf="profile " (click)="toggle()" class="flex mx-6 profile cursor-pointer rounded-full w-10 h-10 bg-blue-500">
+                <img *ngIf="image" src="" alt="" />
+                <div *ngIf="!image" class="text-white text-center w-full my-auto select-none ">AB</div>
+            </div>
+
+            <div *ngIf="profile"
+             [ngClass]="{'md:opacity-0':show}"  class=" sm:opacity-1  dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7 flex flex-col md:absolute md:shadow md:w-40 ">
+                <a class="link mx-3 md:mx-0 px-12 " (click)='show=true' routerLink="user">Account settings</a>
+                <a class="link  mx-3 md:mx-0  " href="">Profile</a>
+                <a class="link mx-3 md:mx-0" href="">Orders</a>
+                <a class="link mx-3 md:mx-0" href="">Entreprises</a>
+                <a (click)="logout()" class=" mx-3 md:mx-0 px-3 py-2 rounded-sm hover:shadow duration-500 transition-colors hover:text-white hover:bg-red-500 my-2 md:my-0" href="">Log out</a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="pb-20"></div>

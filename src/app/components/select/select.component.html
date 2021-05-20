@@ -1,0 +1,17 @@
+<section class="relative w-full max-w-md px-5 py-4 mx-auto rounded-md">
+    <div class="relative">
+
+
+        <input [ngModel]="value" type="text" name="first_name" id="first_name" autocomplete="given-name"
+            class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+    </div>
+
+    <div
+        class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-md max-h-72 dark:bg-gray-800 dark:border-transparent">
+        <div (click)="setValue(dat)" *ngFor="let dat of data" class="block py-1">
+            <h3 class="font-medium text-gray-700 dark:text-gray-100 hover:underline">{{dat}}</h3>
+            
+        </div>
+     
+    </div>
+</section>

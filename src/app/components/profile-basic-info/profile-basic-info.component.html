@@ -1,0 +1,196 @@
+<div class="pt-11 md:mx-5 sm:mt-0">
+    <div>
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        This information will be displayed publicly so be careful what you share.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <form action="#" method="POST">
+                    <div class="shadow sm:rounded-md sm:overflow-hidden">
+                        <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3 sm:col-span-2">
+                                    <label for="company_website" class="block text-sm font-medium text-gray-700">
+                                        Website
+                                    </label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <span
+                                            class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                            http://
+                                        </span>
+                                        <input type="text" name="company_website" id="company_website"
+                                            class="focus:ring-blue-500 focus:border-blue-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                                            placeholder="www.example.com">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    About
+                                </label>
+                                <div class="mt-1">
+                                    <textarea id="about" name="about" rows="3"
+                                        class="shadow-sm focus:ring-blue-500 focus:border-blue-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="you@example.com"></textarea>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">
+                                    Brief description for your profile. URLs are hyperlinked.
+                                </p>
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="country" class="block text-sm font-medium text-gray-700">Country /
+                                    Region</label>
+                                <select id="country" name="country" autocomplete="country"
+                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                    <option>Mexico</option>
+                                </select>
+                            </div>
+
+                            <div class="col-span-6">
+                                <label for="street_address" class="block text-sm font-medium text-gray-700">Street
+                                    address</label>
+                                <input type="text" name="street_address" id="street_address"
+                                    autocomplete="street-address"
+                                    class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                                <input type="text" name="city" id="city"
+                                    class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            </div>
+
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+
+    <div class="mt-10 sm:mt-0">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Language level</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        Please check languages that you actualy know
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <form action="#" method="POST">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="grid grid-cols-12 gap-6">
+
+                                <div class="col-span-full md:col-span-6">
+                                    <label for="first_name"
+                                        class="block text-sm font-medium text-gray-700">Language</label>
+                                    <input type="text" name="first_name" id="first_name" autocomplete="given-name"
+                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+
+                                <div class="col-span-full sm:col-span-6">
+                                    <label for="last_name" class="block text-sm font-medium text-gray-700">Language
+                                        level</label>
+                                    <input type="text" name="last_name" id="last_name" autocomplete="family-name"
+                                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <button type="submit"
+                                    class=" col-span-12 md:col-span-3 right-0 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Add
+                                </button>
+
+
+
+                                <div class="col-span-full overflow-x-auto mt-6">
+
+                                    <table class="table-auto border-collapse w-full">
+                                        <thead>
+                                            <tr class="rounded-lg text-sm font-medium text-gray-700 text-left"
+                                                style="font-size: 0.9674rem">
+                                                <th class="px-4 py-2 bg-gray-300">
+                                                    Language</th>
+                                                <th class="px-4 py-2 bg-gray-300 ">Language level</th>
+                                                <th class="px-4 py-2 bg-gray-300 ">actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-sm font-normal text-gray-700">
+                                            <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+                                                <td class="px-4 py-4">Intro to CSS</td>
+                                                <td class="px-4 py-4">Adam</td>
+                                                <td class="px-4 py-4">
+                                                    <div class="flex item-center justify-start">
+
+                                                        <div
+                                                            class="w-4 mr-2 transform cursor-pointer hover:text-blue-500 hover:scale-110">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                            </svg>
+                                                        </div>
+
+                                                        <div
+                                                            class="w-4 mr-2 transform cursor-pointer hover:text-blue-500 hover:scale-110">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="hidden sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+
+</div>

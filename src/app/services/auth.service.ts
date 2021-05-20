@@ -1,0 +1,67 @@
+import { HttpClient } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Injectable } from '@angular/core';
+import { promise } from 'selenium-webdriver';
+import { User } from '../models/user';
+import { EventemitterService } from './eventemitter.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  public storageKey = "CURRENT_USER"
+
+  constructor(private http: HttpClient, private eventEmiiter: EventemitterService) { }
+
+  async login(values) {
+    var returnedValue: any;
+    await this.http.post<User>("http://localhost:8080/api/users/login", values).toPromise().then(data => {
+      var user: User = data;
+      user.password = "";
+      localStorage.setItem(this.storageKey, JSON.stringify(user));
+      returnedValue = true;
+    }).catch(err => {
+      returnedValue = err.error
+
+    });
+
+    return returnedValue;
+  }
+
+  checkIfuserNameExist(username) {
+    this.http.get<User[]>("http://localhost:8080/api/users/all").toPromise().then(response => {
+      console.log(response)
+      if (response.find(data => data.userName === username)) {
+       this.eventEmiiter.showPopUP({type:'warning',message:'Username already exist'})
+      }
+    }).catch(err=>{
+      this.eventEmiiter.showPopUP({type:'error',message:'an error has been occured'})
+    });
+  }
+
+  checkIfEmailExist(email) {
+    this.http.get<User[]>("http://localhost:8080/api/users/all").toPromise().then(response => {
+      console.log(response)
+      if (response.find(data => data.email === email)) {
+       this.eventEmiiter.showPopUP({type:'warning',message:'Email already exist'})
+      }
+    }).catch(err=>{
+      this.eventEmiiter.showPopUP({type:'error',message:'an error has been occured'})
+    });
+  }
+  logout() {
+    localStorage.removeItem(this.storageKey);
+  }
+
+  isUserLoggedIn() {
+    return localStorage.getItem(this.storageKey) != null;
+  }
+
+  signUp(values) {
+    return this.http.post<User>("http://localhost:8080/api/users/add", values).toPromise()
+  }
+
+  localUser(){
+    return JSON.parse(localStorage.getItem(this.storageKey))
+  }
+
+}
