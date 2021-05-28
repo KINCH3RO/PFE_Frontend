@@ -8,11 +8,11 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-profile-prof-info',
-  templateUrl: './profile-prof-info.component.html',
-  styleUrls: ['./profile-prof-info.component.css']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.css']
 })
-export class ProfileProfInfoComponent implements OnInit {
+export class EditProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private countrySer: CountryService,
@@ -26,6 +26,44 @@ export class ProfileProfInfoComponent implements OnInit {
     this.displayData();
   }
 
+  educationFrom: FormGroup = this.fb.group({
+    id: [0, []],
+    country: ['', [Validators.required]],
+    startYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
+    endYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
+    schoolName: ['', [Validators.required]],
+    specialization: ['', [Validators.required]]
+  })
+  certificationForm: FormGroup = this.fb.group({
+    id: [0, []],
+    name: ['', [Validators.required]],
+    specialization: ['', [Validators.required]],
+    certifiedFrom: ['', [Validators.required]],
+    certificationDate: ['', [Validators.required]],
+
+  })
+
+  occupationForm: FormGroup = this.fb.group({
+    id: [0, []],
+    country: ['', [Validators.required]],
+    startYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
+    endYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
+    title: ['', [Validators.required]],
+    specialization: ['', [Validators.required]]
+
+  })
+
+
+  profileForm: FormGroup = this.fb.group({
+    city: ['', [Validators.required, Validators.minLength(3)]],
+    country: ['', [Validators.required]],
+    description: ['', [Validators.required, Validators.minLength(40)]],
+    streetAddress: ['', []],
+    protfolioWebSiteUrl: ['', [Validators.pattern(/^(https?\:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(\/[\w]*)*$/)]],
+    profileDate: [new Date(), []],
+    speciality: ['', [Validators.required, Validators.minLength(3)]],
+    primaryL: ['', [Validators.required, Validators.minLength(3)]]
+  })
 
 
   countries: Observable<any[]>;
@@ -39,6 +77,12 @@ export class ProfileProfInfoComponent implements OnInit {
   occupationButton = "Add";
   certificationButton = "Add";
 
+  languages: any = []
+  language: string = "";
+  languagelevel: string;
+  index: number;
+  addOrSave = "Add";
+
   displayData() {
     this.userSer.getUserById(this.authSer.localUserId()).toPromise().then(data => {
 
@@ -50,8 +94,18 @@ export class ProfileProfInfoComponent implements OnInit {
         this.certifications = profile.certifications;
         this.educations = profile.educations;
 
-
-
+        this.profileForm.setValue({
+          city: profile.city,
+          country: profile.country,
+          description: profile.description,
+          streetAddress: profile.streetAddress,
+          protfolioWebSiteUrl: profile.protfolioWebSiteUrl,
+          profileDate: profile.profileDate,
+          primaryL: profile.primaryLanguage,
+          speciality: profile.speciality
+        })
+        this.languages = profile.languages;
+        ;
 
       }).catch(err => {
 
@@ -68,9 +122,18 @@ export class ProfileProfInfoComponent implements OnInit {
 
       this.profileSer.getProfileByUser(data).toPromise().then(profile => {
 
+        profile.city = this.city.value;
+        profile.country = this.country.value;
+        profile.description = this.description.value;
+        profile.streetAddress = this.streetAddress.value;
+        profile.protfolioWebSiteUrl = this.protfolioWebSiteUrl.value;
+        profile.speciality = this.speciality.value;
+        profile.primaryLanguage = this.primaryL.value;
+        profile.languages = this.languages;
         profile.occupations = this.occupations;
         profile.certifications = this.certifications;
         profile.educations = this.educations;
+
 
         this.profileSer.updateProfile(profile).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: 'success', message: "profile has been updated" })
@@ -90,33 +153,8 @@ export class ProfileProfInfoComponent implements OnInit {
 
   }
 
-  educationFrom: FormGroup = this.fb.group({
-    id:[0,[]],
-    country: ['', [Validators.required]],
-    startYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
-    endYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
-    schoolName: ['', [Validators.required]],
-    specialization: ['', [Validators.required]]
-  })
 
-  certificationForm: FormGroup = this.fb.group({
-    id:[0,[]],
-    name: ['', [Validators.required]],
-    specialization: ['', [Validators.required]],
-    certifiedFrom: ['', [Validators.required]],
-    certificationDate: ['', [Validators.required]],
 
-  })
-
-  occupationForm: FormGroup = this.fb.group({
-    id:[0,[]],
-    country: ['', [Validators.required]],
-    startYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
-    endYear: ['', [Validators.required, Validators.pattern(/^((20){1}|(19){1})[0-9]{2}$/)]],
-    title: ['', [Validators.required]],
-    specialization: ['', [Validators.required]]
-
-  })
 
 
   // education block 
@@ -149,7 +187,7 @@ export class ProfileProfInfoComponent implements OnInit {
     this.Especialization.setValue(this.educations[i].specialization)
     this.educationButton = "Save";
     this.educationIndex = i;
- 
+
   }
 
   updateEducations() {
@@ -190,7 +228,7 @@ export class ProfileProfInfoComponent implements OnInit {
     this.CcertifiedFrom.setValue(this.certifications[i].certifiedFrom)
     this.certificationIndex = i;
     this.certificationButton = "Save";
- 
+
   }
 
   updateCertification() {
@@ -247,6 +285,45 @@ export class ProfileProfInfoComponent implements OnInit {
     this.occupationButton = "Add";
     this.occupationForm.reset();
   }
+
+
+
+  addLanguage() {
+
+    console.log(this.language)
+    this.languages.push({
+
+      language: this.language,
+      languagelevel: this.languagelevel
+    })
+
+    this.language = "";
+    this.languagelevel = "";
+
+  }
+
+  deleteLanguage(i) {
+    this.languages.splice(i, 1);
+  }
+
+  displayTableData(i) {
+    this.language = this.languages[i].language;
+    this.languagelevel = this.languages[i].languagelevel;
+    this.index = i;
+    this.addOrSave = "Save";
+  }
+
+  updateLanguage() {
+    this.languages[this.index].language = this.language;
+    this.languages[this.index].languagelevel = this.languagelevel;
+    this.addOrSave = "Add";
+    this.index = -1;
+    this.language = "";
+    this.languagelevel = "Beginner";
+  }
+
+
+
   get Ecountry() {
     return this.educationFrom.get("country")
   }
@@ -295,5 +372,29 @@ export class ProfileProfInfoComponent implements OnInit {
     return this.occupationForm.get("specialization")
   }
 
+
+  get city() {
+    return this.profileForm.get("city");
+  }
+  get country() {
+    return this.profileForm.get("country");
+  }
+  get description() {
+    return this.profileForm.get("description");
+  }
+  get streetAddress() {
+    return this.profileForm.get("streetAddress");
+  }
+  get protfolioWebSiteUrl() {
+    return this.profileForm.get("protfolioWebSiteUrl");
+  }
+
+  get speciality() {
+    return this.profileForm.get("speciality");
+  }
+
+  get primaryL() {
+    return this.profileForm.get("primaryL");
+  }
 
 }

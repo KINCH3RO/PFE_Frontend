@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
-body{
-   color: green;
+
+
+.errors{
+   margin-top: 0.5rem;
+   color: rgb(155, 60, 60);
+   
 }

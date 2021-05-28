@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit  {
   isPrimary=true;
   opacity=1;
   display="flex"
-  profile=this.auth.isUserLoggedIn();
+  profile=false;
   show =true;
   showNavBar=true;
   
@@ -41,7 +41,12 @@ export class NavbarComponent implements OnInit  {
   }
   ngOnInit(): void {
 
-    
+    if(this.auth.isUserLoggedIn()){
+      this.auth.isUserLogged.next(true)
+    }
+    this.auth.isUserLogged.subscribe( value => {
+      this.profile = value;
+  });
 
   }
   

@@ -22,6 +22,11 @@ import { ProfileBasicInfoComponent } from './components/profile-basic-info/profi
 import { ProfileCreationWizardComponent } from './components/profile-creation-wizard/profile-creation-wizard.component';
 import { ProfileProfInfoComponent } from './components/profile-prof-info/profile-prof-info.component';
 import { SelectComponent } from './components/select/select.component';
+import { ProfileAssociatedAccountsComponent } from './components/profile-associated-accounts/profile-associated-accounts.component';
+import { ProfileFinishedComponent } from './components/profile-finished/profile-finished.component';
+import { AuthService } from './services/auth.service';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 
@@ -42,6 +47,10 @@ import { SelectComponent } from './components/select/select.component';
     ProfileCreationWizardComponent,
     ProfileProfInfoComponent,
     SelectComponent,
+    ProfileAssociatedAccountsComponent,
+    ProfileFinishedComponent,
+    ProfileComponent,
+    EditProfileComponent,
     
   
 
@@ -55,11 +64,12 @@ import { SelectComponent } from './components/select/select.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
 
 
   ],
-  providers: [FormBuilder,EventemitterService],
+  providers: [FormBuilder,EventemitterService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

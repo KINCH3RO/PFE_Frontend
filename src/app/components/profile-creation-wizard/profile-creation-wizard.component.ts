@@ -10,6 +10,7 @@ export class ProfileCreationWizardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

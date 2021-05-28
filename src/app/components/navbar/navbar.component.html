@@ -68,11 +68,12 @@
             </div>
 
             <div *ngIf="profile"
-             [ngClass]="{'md:opacity-0':show}"  class=" sm:opacity-1  dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7 flex flex-col md:absolute md:shadow md:w-40 ">
+             [ngClass]="{'md:opacity-0':show,'md:hidden':show}"  class=" sm:opacity-1  flex    dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7  flex-col md:absolute md:shadow md:w-40 ">
                 <a class="link mx-3 md:mx-0 px-12 " (click)='show=true' routerLink="user">Account settings</a>
                 <a class="link  mx-3 md:mx-0  " href="">Profile</a>
                 <a class="link mx-3 md:mx-0" href="">Orders</a>
-                <a class="link mx-3 md:mx-0" href="">Entreprises</a>
+                <a routerLink="/profileCreation" class="link mx-3 md:mx-0" href="">Create a profile</a>
+                <a routerLink="/panel" class="link mx-3 md:mx-0" href="">Admin settings</a>
                 <a (click)="logout()" class=" mx-3 md:mx-0 px-3 py-2 rounded-sm hover:shadow duration-500 transition-colors hover:text-white hover:bg-red-500 my-2 md:my-0" href="">Log out</a>
             </div>
         </div>

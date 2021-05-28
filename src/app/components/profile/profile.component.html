@@ -1,0 +1,284 @@
+<div *ngIf="profile">
+<div class="pt-11 md:px-5  sm:mt-0 w-screen overflow-x-hidden flex flex-col md:flex-row justify-between">
+    <section class="flex flex-col md:flex-row px-12 mb-2 md:mb-0">
+
+
+        <div class="profilePic  flex flex-col text-center mx-auto md:mx-0 ">
+            <img class="w-40 h-40 object-cover border-2 rounded-full mb-2"
+                src="http://localhost:8080/api/{{profile.user.profilePhotoUrl}}"
+                alt="">
+            <div>{{profile.user.name+' '+profile.user.familyName}}</div>
+        </div>
+
+        <div class="divider block md:hidden   border-b w-10/12 my-12 mx-auto "> </div>
+        <div class="hidden md:block divider border h-40 my-auto mx-20"></div>
+
+        <ul class="flex flex-col md:my-auto">
+            <li class="flex justify-between md:w-96 mb-5">
+                <div class="key flex ">
+                    <svg class="my-auto mr-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" />
+                        <path fill-rule="evenodd"
+                            d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
+                    </svg>
+
+                    Location
+
+                </div>
+                <div class="key"> {{profile.country}} </div>
+            </li>
+
+            <li class="flex justify-between w-full mb-5">
+                <div class="key flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class=" my-auto mr-3" viewBox="0 0 16 16">
+                        <path
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                    </svg>
+
+                    Member Since
+
+                </div>
+                <div class="key"> {{profile.user.entryDate | date}} </div>
+            </li>
+
+            <li class="flex justify-between w-full mb-5">
+                <div class="key flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="my-auto mr-3" viewBox="0 0 16 16">
+                        <path
+                            d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z" />
+                        <path
+                            d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z" />
+                    </svg>
+                    Primary Language
+
+                </div>
+                <div class="key"> {{profile.primaryLanguage}} </div>
+            </li>
+
+            <li class="flex justify-between w-full mb-5">
+                <div class="key flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="my-auto mr-3" viewBox="0 0 16 16">
+                        <path
+                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                    </svg>
+                    Speciality
+
+                </div>
+                <div class="key"> {{profile.speciality}} </div>
+            </li>
+        </ul>
+
+
+
+
+
+
+    </section>
+
+    <div class="actionButton flex md:flex-col justify-center">
+        <div routerLink="/editProfile"
+            class=" mx-2 md:mx-0 mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+            <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mx-auto w-6 h-6 md:w-4 md:h-4"
+                viewBox="0 0 16 16">
+                <path
+                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+            </svg>
+
+        </div>
+
+        <div
+            class="  mx-2 md:mx-0  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mx-auto w-6 h-6 md:w-4 md:h-4"
+                viewBox="0 0 16 16">
+                <path
+                    d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z" />
+            </svg>
+
+        </div>
+
+        <div
+            class=" mx-2 md:mx-0  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="mx-auto w-6 h-6 md:w-4 md:h-4"
+                viewBox="0 0 16 16">
+                <path
+                    d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+            </svg>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="" aria-hidden="true">
+    <div class="py-6">
+        <div class="border-t border-gray-200"></div>
+    </div>
+</div>
+
+<div class=" px-5  sm:mt-0 w-screen">
+    <section class="grid grid-cols-2  gap-4">
+        <div class="container col-span-2 md:col-span-1">
+            <div class="text-black mb-2"> About</div>
+            <div class="max-w-full break-words">
+                {{profile.description}}
+            </div>
+        </div>
+
+        <div class="container col-span-2 md:col-span-1">
+            <div class="text-black mb-2"> Education</div>
+            <ul *ngIf="profile.educations">
+                <li *ngFor="let school of profile.educations">{{school.schoolName+" "+school.startYear+"-"+school.endYear }}</li>
+            </ul>
+        </div>
+
+        <div class="container col-span-2 md:col-span-1">
+            <div class="text-black mb-2"> Certifications </div>
+            <ul *ngIf="profile.certifications">
+                <li *ngFor="let certification of profile.certifications">
+                    {{certification.name+" "+certification.specialization }}
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="container col-span-2 md:col-span-1">
+            <div class="text-black mb-2"> Occupations </div>
+            <ul *ngIf="profile.occupations">
+                <li *ngFor="let occupation of profile.occupations">
+                    {{occupation.title+" "+occupation.startYear+"-"+occupation.endYear }}
+                </li>
+
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+  
+
+
+</div>
+
+<div class="" aria-hidden="true">
+    <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+    </div>
+</div>
+
+<div class=" px-5 hidden  sm:mt-0 w-screen">
+    <section class="">
+        <div class="text-black mb-4"> Paul's offers</div>
+
+        <div class="container md:p-5 mb-2 grid grid-cols-4 gap-10">
+            <div class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1">
+                <img class="offer-image rounded-t-md w-full h-28 object-cover mb-3"
+                    src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/2f934bfb764492e5257c2ca1f4b408135cda1a44/design-3-professional-logo-for-you-in-24-hours.jpg"
+                    alt="">
+                <div class="offers-info  px-2 py-1">
+                    <div class="seller-info  flex mb-2">
+                        <img class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                            src=" https://chicagophotovideo.com/wp-content/uploads/2018/01/professional-headshot-for-corporate-website-1024x683.jpg"
+                            alt="">
+
+                        <span class="mt-auto text-black">Paul Maul</span>
+                    </div>
+                    <div class="text-sm">I will create a flat minimalist logo design</div>
+                </div>
+            </div>
+
+            <div class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1">
+                <img class="offer-image rounded-t-md w-full h-28 object-cover mb-3"
+                    src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/2f934bfb764492e5257c2ca1f4b408135cda1a44/design-3-professional-logo-for-you-in-24-hours.jpg"
+                    alt="">
+                <div class="offers-info  px-2 py-1">
+                    <div class="seller-info  flex mb-2">
+                        <img class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                            src=" https://chicagophotovideo.com/wp-content/uploads/2018/01/professional-headshot-for-corporate-website-1024x683.jpg"
+                            alt="">
+
+                        <span class="mt-auto text-black">Paul Maul</span>
+                    </div>
+                    <div class="text-sm">I will create a flat minimalist logo design</div>
+                </div>
+            </div>
+
+            <div class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1">
+                <img class="offer-image rounded-t-md w-full h-28 object-cover mb-3"
+                    src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/2f934bfb764492e5257c2ca1f4b408135cda1a44/design-3-professional-logo-for-you-in-24-hours.jpg"
+                    alt="">
+                <div class="offers-info  px-2 py-1">
+                    <div class="seller-info  flex mb-2">
+                        <img class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                            src=" https://chicagophotovideo.com/wp-content/uploads/2018/01/professional-headshot-for-corporate-website-1024x683.jpg"
+                            alt="">
+
+                        <span class="mt-auto text-black">Paul Maul</span>
+                    </div>
+                    <div class="text-sm">I will create a flat minimalist logo design</div>
+                </div>
+            </div>
+
+            <div class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1">
+                <img class="offer-image rounded-t-md w-full h-28 object-cover mb-3"
+                    src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/2f934bfb764492e5257c2ca1f4b408135cda1a44/design-3-professional-logo-for-you-in-24-hours.jpg"
+                    alt="">
+                <div class="offers-info  px-2 py-1">
+                    <div class="seller-info  flex mb-2">
+                        <img class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                            src=" https://chicagophotovideo.com/wp-content/uploads/2018/01/professional-headshot-for-corporate-website-1024x683.jpg"
+                            alt="">
+
+                        <span class="mt-auto text-black">Paul Maul</span>
+                    </div>
+                    <div class="text-sm">I will create a flat minimalist logo design</div>
+                </div>
+            </div>
+
+            <div class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1">
+                <img class="offer-image rounded-t-md w-full h-28 object-cover mb-3"
+                    src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/2f934bfb764492e5257c2ca1f4b408135cda1a44/design-3-professional-logo-for-you-in-24-hours.jpg"
+                    alt="">
+                <div class="offers-info  px-2 py-1">
+                    <div class="seller-info  flex mb-2">
+                        <img class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                            src=" https://chicagophotovideo.com/wp-content/uploads/2018/01/professional-headshot-for-corporate-website-1024x683.jpg"
+                            alt="">
+
+                        <span class="mt-auto text-black">Paul Maul</span>
+                    </div>
+                    <div class="text-sm">I will create a flat minimalist logo design</div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </section>
+
+
+</div>
+
+</div>

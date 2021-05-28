@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { promise } from 'selenium-webdriver';
 import { User } from '../models/user';
 import { EventemitterService } from './eventemitter.service';
@@ -9,6 +10,7 @@ import { EventemitterService } from './eventemitter.service';
 })
 export class AuthService {
   public storageKey = "CURRENT_USER"
+  public isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private eventEmiiter: EventemitterService) { }
 
@@ -18,6 +20,7 @@ export class AuthService {
       var user: User = data;
       user.password = "";
       localStorage.setItem(this.storageKey, JSON.stringify(user));
+      this.isUserLogged.next(true);
       returnedValue = true;
     }).catch(err => {
       returnedValue = err.error
@@ -49,10 +52,12 @@ export class AuthService {
     });
   }
   logout() {
+    this.isUserLogged.next(false);
     localStorage.removeItem(this.storageKey);
   }
 
   isUserLoggedIn() {
+   
     return localStorage.getItem(this.storageKey) != null;
   }
 
@@ -62,6 +67,9 @@ export class AuthService {
 
   localUser(){
     return JSON.parse(localStorage.getItem(this.storageKey))
+  }
+  localUserId(){
+    return JSON.parse(localStorage.getItem(this.storageKey)).idUser;
   }
 
 }

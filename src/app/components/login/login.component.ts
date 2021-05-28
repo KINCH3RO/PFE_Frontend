@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   signUpForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    familyName: ['', [Validators.required, Validators.minLength(6)]],
+    familyName: ['', [Validators.required, Validators.minLength(3)]],
     userName: ['', [Validators.required, Validators.minLength(6)]],
     bornDate: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
