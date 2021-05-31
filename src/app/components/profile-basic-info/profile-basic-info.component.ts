@@ -24,6 +24,7 @@ export class ProfileBasicInfoComponent implements OnInit {
     private router: Router) { }
 
     ngOnInit(): void {
+      this.profileSer.setPage(1);
       this.countries = this.countrySer.getAllCountries();
       this.displayData();
     }

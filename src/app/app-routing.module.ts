@@ -6,6 +6,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManageAccountsComponent } from './components/manage-accounts/manage-accounts.component';
+import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
+import { ManageSubCatComponent } from './components/manage-sub-cat/manage-sub-cat.component';
 import { ProfileAssociatedAccountsComponent } from './components/profile-associated-accounts/profile-associated-accounts.component';
 import { ProfileBasicInfoComponent } from './components/profile-basic-info/profile-basic-info.component';
 import { ProfileCreationStepsComponent } from './components/profile-creation-steps/profile-creation-steps.component';
@@ -21,13 +23,19 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent ,children:[
-    {path:':id',component:ProfileComponent}
-  ]},
+  {
+    path: 'profile', children: [
 
-  { path: 'editProfile', component: EditProfileComponent ,children:[
-    {path:':id',component:ProfileComponent}
-  ]},
+      { path: '', component: ProfileComponent },
+      { path: ':id', component: ProfileComponent }
+    ]
+  },
+
+  {
+    path: 'editProfile', component: EditProfileComponent, children: [
+      { path: ':id', component: ProfileComponent }
+    ]
+  },
 
   {
     path: 'login', canActivate: [LoggedInGuard], children: [
@@ -43,18 +51,25 @@ const routes: Routes = [
   },
 
   {
-    path: 'panel',component: AdminPanelComponent, children: [
+    path: 'panel', component: AdminPanelComponent, children: [
       { path: 'accounts', component: ManageAccountsComponent, },
       { path: 'roles', component: RoleSettingsComponent },
+      { path: 'categories', component: ManageCategoriesComponent },
+      { path: 'subCats/:id', component: ManageSubCatComponent }
     ]
   },
   {
-    path: 'profileCreation',component: ProfileCreationWizardComponent, children: [
+    path: "CreationSteps", component: ProfileCreationStepsComponent
+  },
+  {
+    path: 'profileCreation', component: ProfileCreationWizardComponent, children: [
+
       { path: '', component: ProfileBasicInfoComponent },
+
       { path: 'pro', component: ProfileProfInfoComponent },
       { path: 'Aac', component: ProfileAssociatedAccountsComponent },
       { path: 'finished', component: ProfileFinishedComponent }
-     
+
     ]
   },
 
@@ -62,7 +77,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

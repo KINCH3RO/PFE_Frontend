@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable,of } from 'rxjs';
 import { promise } from 'selenium-webdriver';
 import { User } from '../models/user';
 import { EventemitterService } from './eventemitter.service';
@@ -10,8 +10,8 @@ import { EventemitterService } from './eventemitter.service';
 })
 export class AuthService {
   public storageKey = "CURRENT_USER"
-  public isUserLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  public isUserLogged:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  
   constructor(private http: HttpClient, private eventEmiiter: EventemitterService) { }
 
   async login(values) {
@@ -51,6 +51,7 @@ export class AuthService {
       this.eventEmiiter.showPopUP({type:'error',message:'an error has been occured'})
     });
   }
+
   logout() {
     this.isUserLogged.next(false);
     localStorage.removeItem(this.storageKey);

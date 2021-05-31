@@ -27,6 +27,8 @@ import { ProfileFinishedComponent } from './components/profile-finished/profile-
 import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
+import { ManageSubCatComponent } from './components/manage-sub-cat/manage-sub-cat.component';
 
 
 
@@ -51,6 +53,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     ProfileFinishedComponent,
     ProfileComponent,
     EditProfileComponent,
+    ManageCategoriesComponent,
+    ManageSubCatComponent,
     
   
 

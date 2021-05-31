@@ -1,7 +1,9 @@
 import { state, style, trigger } from '@angular/animations';
 import { Component, OnChanges, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 
 @Component({
@@ -14,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit  {
 
  
-  constructor(private fb:FormBuilder,private auth:AuthService) { }
+  constructor(private fb:FormBuilder,public auth:AuthService,private profileSer:ProfileService) { }
 
  
 
@@ -25,6 +27,7 @@ export class NavbarComponent implements OnInit  {
   profile=false;
   show =true;
   showNavBar=true;
+  hasProfile=false;
   
 
   logout(){
@@ -40,13 +43,19 @@ export class NavbarComponent implements OnInit  {
     this.showNavBar=!this.showNavBar;
   }
   ngOnInit(): void {
+    this.auth.isUserLogged.subscribe(data=>{
+      this.profile=data;
+    });
 
-    if(this.auth.isUserLoggedIn()){
-      this.auth.isUserLogged.next(true)
-    }
-    this.auth.isUserLogged.subscribe( value => {
-      this.profile = value;
-  });
+    let  u:User =new User();
+    u.idUser=this.auth.localUserId();
+    this.profileSer.getProfileByUser(u).toPromise().then(data=>{
+        this.hasProfile=data.completed;
+    }).catch(err=>{
+
+    })
+
+
 
   }
   

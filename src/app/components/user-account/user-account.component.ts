@@ -145,8 +145,7 @@ export class UserAccountComponent implements OnInit {
 
     await this.userS.updateUser(updatedUser).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: "Your personnal info has been updated" })
-      this.oldPassword.setValue("");
-      this.newPassword.setValue("");
+       this.securityForm.reset();
     }).catch(err => {
       this.eventEmitter.showPopUP({
         type: "error", message: err.error

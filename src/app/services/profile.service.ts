@@ -13,7 +13,7 @@ export class ProfileService {
   
   PAGE_KEY="profilePage";
 
-  pageNumber:BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  pageNumber:BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private userSer: UserService, private http: HttpClient, private eventEmitter: EventemitterService) { }
 
@@ -55,13 +55,20 @@ export class ProfileService {
   
   setPage(id){
     localStorage.setItem(this.PAGE_KEY,id);
+    this.pageNumber.next(id)
+ 
   }
 
   getPage(){
-   this.pageNumber.next(parseInt( localStorage.getItem(this.PAGE_KEY)));
+    this.pageNumber.next( localStorage.getItem(this.PAGE_KEY) ? parseInt( localStorage.getItem(this.PAGE_KEY)) : 0);
+  }
+
+  getPageFromLocalStorage(){
+   return localStorage.getItem(this.PAGE_KEY);
   }
 
   clearPage(){
+    this.pageNumber.next(0)
     localStorage.removeItem(this.PAGE_KEY);
   }
 }

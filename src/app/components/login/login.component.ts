@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
         if (data == true) {
           this.router.navigateByUrl("/")
         } else {
-          this.eventEmitter.showPopUP({ type: "error", message: data, time: 7000 })
+          this.eventEmitter.showPopUP({ type: "error", message: data, time: 5000 })
         }
       })
       this.loading = false;

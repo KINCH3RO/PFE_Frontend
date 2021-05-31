@@ -42,7 +42,7 @@ export class RoleSettingsComponent implements OnInit {
   mandatoryRoles = ['ADMIN', 'USER_ADMIN', 'SUPPORT', 'USER']
   deleteRoleName: string;
 
-  selectedRole: number = 0;
+
   addRole = true;
   updateRole() {
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { CountryService } from 'src/app/services/country.service';
@@ -19,9 +20,11 @@ export class ProfileProfInfoComponent implements OnInit {
     private eventEmitter: EventemitterService,
     private userSer: UserService,
     private profileSer: ProfileService,
-    private authSer: AuthService) { }
+    private authSer: AuthService,
+    private router:Router) { }
 
   ngOnInit(): void {
+    this.profileSer.setPage(2);
     this.countries = this.countrySer.getAllCountries();
     this.displayData();
   }
@@ -74,6 +77,7 @@ export class ProfileProfInfoComponent implements OnInit {
 
         this.profileSer.updateProfile(profile).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: 'success', message: "profile has been updated" })
+          this.router.navigateByUrl("/profileCreation/Aac")
         }).catch(err => {
           this.eventEmitter.showPopUP({ type: 'error', message: err.error })
         })

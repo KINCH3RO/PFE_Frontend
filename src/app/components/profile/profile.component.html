@@ -81,7 +81,7 @@
     </section>
 
     <div class="actionButton flex md:flex-col justify-center">
-        <div routerLink="/editProfile"
+        <div *ngIf="showEditButton" routerLink="/editProfile"
             class=" mx-2 md:mx-0 mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
             <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mx-auto w-6 h-6 md:w-4 md:h-4"
                 viewBox="0 0 16 16">

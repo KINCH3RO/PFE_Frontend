@@ -1,9 +1,11 @@
 <!-- component -->
+
 <div class="w-full py-6">
+  
     <div class="flex">
         <div class="w-1/4">
             <div class="relative mb-2">
-                <div class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-gray-600 flex items-center">
+                <div routerLink="/profileCreation" class="active w-10 h-10 mx-auto bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
                     <span class="text-center  w-full">
                         <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                             width="24" height="24">
@@ -22,11 +24,11 @@
                 <div class="absolute flex align-center items-center align-middle content-center"
                     style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
                     <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
-                        <div class="w-0 bg-blue-300 py-1 rounded" style="width: 100%;"></div>
+                        <div class="transition-all duration-700 w-1/3 bg-blue-300 py-1 rounded " [ngClass]="{'w-full':pageNumber>1}"></div>
                     </div>
                 </div>
 
-                <div class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-gray-600 flex items-center">
+                <div  routerLink="/profileCreation/pro"  [ngClass]="{'active':pageNumber>=2}"   class="w-10 h-10 mx-auto bg-white border-2 border-gray-200  hover:border-blue-400 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
                     <span class="text-center  w-full">
                         <svg class="w-full " fill="none" stroke="currentColor" viewBox="0 0 24 24" width=24 height=24
                             xmlns="http://www.w3.org/2000/svg">
@@ -46,12 +48,12 @@
                 <div class="absolute flex align-center items-center align-middle content-center"
                     style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
                     <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
-                        <div class="w-0 bg-blue-300 py-1 rounded" style="width: 33%;"></div>
+                        <div     class="w-0 transition-all duration-700  bg-blue-300 py-1 rounded" [ngClass]="{'w-full':pageNumber>2,'w-1/3':pageNumber==2}" ></div>
                     </div>
                 </div>
 
-                <div
-                    class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-gray-600 flex items-center">
+                <div routerLink="/profileCreation/Aac"
+                  [ngClass]="{'active':pageNumber>=3}"  class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 hover:border-blue-400 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
                     <span class="text-center  w-full">
                         <svg class="w-full" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -67,15 +69,15 @@
         </div>
 
         <div class="w-1/4">
-            <div class="relative mb-2">
+            <div class="relative mb-2 ">
                 <div class="absolute flex align-center items-center align-middle content-center"
                     style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
                     <div class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1">
-                        <div class="w-0 bg-blue-300 py-1 rounded" style="width: 0%;"></div>
+                        <div   class="w-0 transition-all duration-700  bg-blue-300 py-1 rounded" [ngClass]="{'w-full':pageNumber>3,'w-1/3':pageNumber==3}"></div>
                     </div>
                 </div>
 
-                <div
+                <div  [ngClass]="{'active':pageNumber>3}"
                     class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-gray-600 flex items-center">
                     <span class="text-center  w-full">
                         <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-profile-associated-accounts',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileAssociatedAccountsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profileSer:ProfileService,private router:Router) { }
 
   ngOnInit(): void {
+    this.profileSer.setPage(3);
+  }
+
+  next(){
+    this.router.navigateByUrl("/profileCreation/finished")
   }
 
 }
