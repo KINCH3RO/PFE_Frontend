@@ -5,6 +5,7 @@ import { Profile } from 'src/app/models/profile';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { EventemitterService } from 'src/app/services/eventemitter.service';
+import { OfferService } from 'src/app/services/offer.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -17,9 +18,11 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService,
     private activatedRoute: ActivatedRoute,
     private eventEmitter: EventemitterService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private offerSer:OfferService) { }
 
   profile: Profile;
+  offers:Observable<any>
   showEditButton=false;
 
   ngOnInit(): void {
@@ -53,6 +56,10 @@ export class ProfileComponent implements OnInit {
       console.log(err.error);
       
     })
+
+
+    this.offers = this.offerSer.findAllByUser(userId);
+
   }
 
 }

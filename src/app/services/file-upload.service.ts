@@ -14,14 +14,34 @@ export class FileUploadService {
 
   }
 
-  uploadFile( file: File,userId:string) {
+  uploadFile( file: File) {
     const f: FormData = new FormData();
     f.append("file", file)
-    f.append("id", userId)
+  
 
 
 
-    return this.http.post("http://localhost:8080/api/users/fileUpload", f,{responseType:'text',reportProgress:true,observe:'events'}).toPromise();
+    return this.http.post("http://localhost:8080/api/users/fileUpload", f,{responseType:'text'}).toPromise();
   }
+
+
+  uploadFileOffers( file: File) {
+    const f: FormData = new FormData();
+    f.append("file", file)
+  
+
+
+
+    return this.http.post("http://localhost:8080/api/services/fileUpload", f,{responseType:'text'}).toPromise();
+  }
+
+  
+
+
+
+  
+
+ 
+
 
 }

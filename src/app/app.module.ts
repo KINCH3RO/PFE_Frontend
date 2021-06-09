@@ -29,6 +29,21 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ManageCategoriesComponent } from './components/manage-categories/manage-categories.component';
 import { ManageSubCatComponent } from './components/manage-sub-cat/manage-sub-cat.component';
+import { WizardStepsComponent } from './components/services/wizard-steps/wizard-steps.component';
+import { StepsPageComponent } from './components/services/steps-page/steps-page.component';
+import { BasicInfoPageComponent } from './components/services/basic-info-page/basic-info-page.component';
+import { PlansInfoPageComponent } from './components/services/plans-info-page/plans-info-page.component';
+import { MediaInfoPageComponent } from './components/services/media-info-page/media-info-page.component';
+import { FinishPageComponent } from './components/services/finish-page/finish-page.component';
+import { ServicePageComponent } from './components/services/service-page/service-page.component';
+import { MyServicesComponent } from './components/services/my-services/my-services.component';
+import { EditServiceComponent } from './components/services/edit-service/edit-service.component';
+import { MapComponent } from './components/map/map.component';
+import { MarkerComponent } from './components/marker/marker.component';
+import { SearchPageComponent } from './components/services/search-page/search-page.component';
+import { ServicesMapComponent } from './components/services/services-map/services-map.component';
+import { ManageIrlCatComponent } from './components/manage-irl-cat/manage-irl-cat.component';
+
 
 
 
@@ -55,6 +70,20 @@ import { ManageSubCatComponent } from './components/manage-sub-cat/manage-sub-ca
     EditProfileComponent,
     ManageCategoriesComponent,
     ManageSubCatComponent,
+    WizardStepsComponent,
+    StepsPageComponent,
+    BasicInfoPageComponent,
+    PlansInfoPageComponent,
+    MediaInfoPageComponent,
+    FinishPageComponent,
+    ServicePageComponent,
+    MyServicesComponent,
+    EditServiceComponent,
+    MapComponent,
+    MarkerComponent,
+    SearchPageComponent,
+    ServicesMapComponent,
+    ManageIrlCatComponent,
     
   
 
@@ -63,7 +92,7 @@ import { ManageSubCatComponent } from './components/manage-sub-cat/manage-sub-ca
   imports: [
 
     BrowserModule,
-
+  
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,

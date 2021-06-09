@@ -1,0 +1,454 @@
+<div *ngIf="currentService && profile " class="pt-11 md:mx-5 sm:mt-0">
+    <!-- Header -->
+    <div class="flex justify-between flex-col md:flex-row  ">
+        <div class="flex justify-center md:justify-start mx-5 md:mx-0">
+            <div class="flex hover:text-blue-500  cursor-pointer" routerLink="/profile/{{currentService.user.id}}">
+                <img class="mr-4 rounded-full w-10 h-10 object-cover my-auto"
+                    src="{{env.endPoint+currentService.user.profilePhotoUrl}}" alt="">
+                <div class="text-base my-auto">{{currentService.user.name +' '+currentService.user.familyName}}</div>
+            </div>
+            <div class="line h-8 w-px bg-gray-500 mx-5 my-auto"> </div>
+            <h1 class="text-lg text-black my-auto break-words">{{currentService.title}}</h1>
+        </div>
+
+        <div class="actionButton flex justify-center mt-5 md:mt-0">
+            <div routerLink="/editService/{{currentService.id}}"
+                class=" mx-2  md:mx-1  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
+                    <path
+                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                </svg>
+
+            </div>
+
+            <div
+                class="  mx-2  md:mx-1  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
+                    <path
+                        d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z" />
+                </svg>
+
+            </div>
+
+            <div
+                class=" mx-2 md:mx-1  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
+                    <path
+                        d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                </svg>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+    <!-- Service gallery -->
+    <div *ngIf="imagesArray.length>0 || videosArray.length > 0 ">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Service ShowCase </h3>
+                    <p class="mt-1 text-sm text-gray-600">
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+
+                <div class="shadow sm:rounded-md sm:overflow-hidden">
+
+                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+                        <img *ngIf="!loaded" class="  green animate-spin h-10 w-10 mr-3 ..."
+                            src="https://img.icons8.com/ios/50/4a90e2/spinning-circle--v1.png" />
+
+                        <!-- Flickity HTML init -->
+                        <div *ngIf="loaded" class="carousel md:mb-3 mb-6">
+
+                            <div *ngFor="let image of imagesArray ;let i= index" class="carousel-cell">
+
+                                <div class="carousel-cell-image object-cover">
+                                    <img src="http://localhost:8080/api/{{image}}">
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div *ngFor="let video of  videosArray; let i =index" class="carousel-cell">
+                                <div
+                                    class="absolute flex text-white top-0 left-0 mt-5  z-40 transparent-gray transparent-gray py-1 px-2 ">
+
+
+
+                                </div>
+                                <video src="http://localhost:8080/api/{{video}}" controls>
+
+                                </video>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="imagesArray.length>0 || videosArray.length > 0 " class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+    <!-- About the service -->
+    <div>
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">About this Service </h3>
+                    <p class="mt-1 text-sm text-gray-600">
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+
+                <div class="shadow sm:rounded-md sm:overflow-hidden">
+
+                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Description</h3>
+                        <p class=" text-sm text-gray-600 break-words">
+                            {{currentService.description}}
+                        </p>
+                        <div *ngIf="!currentService.degital" class="space-y-3">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Location</h3>
+                            <div class="text-sm text-gray-600">{{currentService.country+'. '+currentService.city +' ' +
+                                currentService.adresse}} </div>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Price</h3>
+                            <div class="text-lg text-blue-600">{{currentService.price +' / '+currentService.deliveryTime
+                                +' '+ currentService.deliveryTimeUnit}}</div>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Contact seller</h3>
+                            <button type="submit"
+                                class=" col-span-12 md:col-span-3 right-0 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Contact
+                            </button>
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="imagesArray.length>0 || videosArray.length > 0 " class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+    <!-- MAP -->
+    <div *ngIf="!currentService.degital">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Map location </h3>
+                    <p class="mt-1 text-sm text-gray-600">
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+
+                <div class="shadow sm:rounded-md sm:overflow-hidden">
+
+                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+                        <h3 class="w-full h-96">
+                            <app-map [add]=false [features]="features" [lng]="currentService.lng"
+                                [lat]="currentService.lat">
+
+                            </app-map>
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!currentService.degital" class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+    <!-- packages  -->
+    <div *ngIf="currentService.degital && packages.length > 0">
+        <div class="md:grid mt-5 md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Packages </h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        Available packages
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4">
+
+                        <div class="w-full flex overflow-x-auto">
+
+
+                            <button (click)=showPackage(i) [ngClass]="{'active_tab': i==selectedPackageIndex }"
+                                *ngFor="let package of packages; let i =index"
+                                class="tabs text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none">
+                                {{packagesLevelName[package.packageLevel]}}
+
+                            </button>
+
+
+                        </div>
+                        <!-- <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Applicant Information
+                        </h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            Personal details and application.
+                        </p> -->
+                    </div>
+                    <div class="border-t border-gray-200">
+                        <dl>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Title
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{packages[selectedPackageIndex].title}}
+                                </dd>
+                            </div>
+                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    About
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{packages[selectedPackageIndex].description}}
+                                </dd>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Price
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{packages[selectedPackageIndex].price}}
+                                </dd>
+                            </div>
+                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Delivery time
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{packages[selectedPackageIndex].deliveryTime + ' '
+                                    +packages[selectedPackageIndex].deliveryTimeUnit}}
+                                </dd>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Select
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <button type="submit"
+                                        class="w-full md:w-auto mx-3 md:mx-0 next py-2 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Buy
+                                    </button>
+                                </dd>
+                            </div>
+
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="currentService.degital  && packages.length > 0" class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+
+    <!-- About the seller -->
+    <div>
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">About the seller </h3>
+                    <p class="mt-1 text-sm text-gray-600">
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+
+                <div class="shadow sm:rounded-md sm:overflow-hidden">
+
+                    <div class="md:px-4 py-5 bg-white space-y-6 sm:p-6">
+                        <div
+                            class="md:px-5  sm:mt-0 w-screen overflow-x-hidden flex flex-col md:flex-row justify-between">
+                            <section class="flex flex-col md:flex-row px-12 mb-2 md:mb-0">
+
+
+                                <div class="profilePic cursor-pointer hover:text-blue-500  flex flex-col text-center mx-auto md:mx-0 "
+                                    routerLink="/profile/{{currentService.user.id}}">
+                                    <img class="w-40 h-40 object-cover border-2 rounded-full mb-2"
+                                        src="http://localhost:8080/api/{{currentService.user.profilePhotoUrl}}" alt="">
+                                    <div>{{currentService.user.name+' '+currentService.user.familyName}}</div>
+                                </div>
+
+                                <div class="divider block md:hidden   border-b w-10/12 my-12 mx-auto "> </div>
+                                <div class="hidden md:block divider border h-40 my-auto mx-20"></div>
+
+                                <ul class="flex flex-col md:my-auto">
+                                    <li class="flex justify-between md:w-96 mb-5">
+                                        <div class="key flex ">
+                                            <svg class="my-auto mr-3" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
+                                            </svg>
+
+                                            Location
+
+                                        </div>
+                                        <div class="key"> {{profile.country}} </div>
+                                    </li>
+
+                                    <li class="flex justify-between w-full mb-5">
+                                        <div class="key flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class=" my-auto mr-3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                            </svg>
+
+                                            Member Since
+
+                                        </div>
+                                        <div class="key"> {{profile.user.entryDate | date}} </div>
+                                    </li>
+
+                                    <li class="flex justify-between w-full mb-5">
+                                        <div class="key flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="my-auto mr-3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z" />
+                                                <path
+                                                    d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z" />
+                                            </svg>
+                                            Primary Language
+
+                                        </div>
+                                        <div class="key"> {{profile.primaryLanguage}} </div>
+                                    </li>
+
+                                    <li class="flex justify-between w-full mb-5">
+                                        <div class="key flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="my-auto mr-3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                            </svg>
+                                            Speciality
+
+                                        </div>
+                                        <div class="key"> {{profile.speciality}} </div>
+                                    </li>
+                                </ul>
+
+
+
+
+
+
+                            </section>
+
+
+                        </div>
+
+                        <div class=" ">
+                            <div class="py-0.5">
+                                <div class="border-t border-gray-200"></div>
+                            </div>
+                        </div>
+                        <h3 class=" px-12 md:px-0 text-lg font-medium leading-6 text-gray-900">Description</h3>
+                        <p class=" px-12 md:px-0 text-sm text-gray-600 break-words">
+                            {{profile.description}}
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class=" sm:block" aria-hidden="true">
+        <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+
+
+
+
+</div>

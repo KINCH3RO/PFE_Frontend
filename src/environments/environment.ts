@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  endPoint:"http://localhost:8080/api/",
+  mapBoxAccessToken:"pk.eyJ1Ijoia2luMTIzIiwiYSI6ImNrcGlnb2NuajBlZ3kybm9mb3RvNTg1YmwifQ.hX-14BZKBN64-CRkHkMy1A",
   production: false
 };
 

@@ -1,0 +1,7 @@
+.active_tab {
+    @apply text-blue-500 border-b-2 font-medium border-blue-500 mx-2;
+}
+
+.tabs:hover {
+    @apply text-blue-500 border-b-2 font-medium border-blue-500;
+}

@@ -7,57 +7,94 @@ import { Category } from './models/category';
 })
 export class CategoryServiceService {
 
-  constructor(private http:HttpClient) {
-    
-   }
-
-   addCategory(category){
-     return this.http.post("http://localhost:8080/api/category/add",category);
-
-   }
-
-   update(category){
-    return this.http.put("http://localhost:8080/api/category/update",category);
+  constructor(private http: HttpClient) {
 
   }
 
-  delete(id){
-    return this.http.delete("http://localhost:8080/api/category/delete/"+id);
+  addCategory(category) {
+    return this.http.post("http://localhost:8080/api/category/add", category);
 
   }
-  getOne(id){
-    return this.http.get<Category>("http://localhost:8080/api/category/"+id);
+
+  update(category) {
+    return this.http.put("http://localhost:8080/api/category/update", category);
+
   }
 
-   getAllPaginCategories(pageSize,pageNumber,name=""){
-    var url =`http://localhost:8080/api/category/?pageSize=${pageSize}&pageNumber=${pageNumber}&title=${name}`
-  
+  delete(id) {
+    return this.http.delete("http://localhost:8080/api/category/delete/" + id);
+
+  }
+  getOne(id) {
+    return this.http.get<Category>("http://localhost:8080/api/category/" + id);
+  }
+
+  getAllCategories(){
+    return this.http.get<Category[]>("http://localhost:8080/api/category/all");
+  }
+
+  getAllPaginCategories(pageSize, pageNumber, name = "") {
+    var url = `http://localhost:8080/api/category/?pageSize=${pageSize}&pageNumber=${pageNumber}&title=${name}`
+
     return this.http.get<Category[]>(url);
   }
 
 
-  addSubCat(category){
-    return this.http.post("http://localhost:8080/api/category/subcat/add",category);
+  addSubCat(category) {
+    return this.http.post("http://localhost:8080/api/category/subcat/add", category);
 
   }
 
-  updateSubCat(category){
-   return this.http.put("http://localhost:8080/api/category/subcat/update",category);
+  updateSubCat(category) {
+    return this.http.put("http://localhost:8080/api/category/subcat/update", category);
 
- }
+  }
 
- deleteSubCat(id){
-   return this.http.delete("http://localhost:8080/api/category/subcat/delete/"+id);
+  deleteSubCat(id) {
+    return this.http.delete("http://localhost:8080/api/category/subcat/delete/" + id);
 
- }
- getOneSubcat(id){
-   return this.http.get("http://localhost:8080/api/category/subcat/"+id);
- }
+  }
+  getOneSubcat(id) {
+    return this.http.get("http://localhost:8080/api/category/subcat/" + id);
+  }
+  getAllsubCatByCat(id){
+    return this.http.get<Category[]>("http://localhost:8080/api/category/subcat/all/" + id);
+  }
 
-  getAllPaginSubCat(pageSize,pageNumber,id,name=""){
-   var url =`http://localhost:8080/api/category/subcat/?pageSize=${pageSize}&pageNumber=${pageNumber}&catid=${id}&title=${name}`
- 
-   return this.http.get<Category[]>(url);
- }
+  getAllPaginSubCat(pageSize, pageNumber, id, name = "") {
+    var url = `http://localhost:8080/api/category/subcat/?pageSize=${pageSize}&pageNumber=${pageNumber}&catid=${id}&title=${name}`
+
+    return this.http.get<Category[]>(url);
+  }
+
+
+  addIRLCategory(category) {
+    return this.http.post("http://localhost:8080/api/category/irlCat/add", category);
+
+  }
+
+  updateIRLCategory(category) {
+    return this.http.put("http://localhost:8080/api/category/irlCat/update", category);
+
+  }
+
+  deleteIRLCategory(id) {
+    return this.http.delete("http://localhost:8080/api/category/irlCat/delete/" + id);
+
+  }
+  getOneIRLCategory(id) {
+    return this.http.get<Category>("http://localhost:8080/api/irlCat/category/" + id);
+  }
+
+  getAllIRLCategories(){
+    return this.http.get<Category[]>("http://localhost:8080/api/category/irlCat/all");
+  }
+
+  getAllPaginIRLCategories(pageSize, pageNumber, name = "") {
+    var url = `http://localhost:8080/api/category/irlCat/?pageSize=${pageSize}&pageNumber=${pageNumber}&title=${name}`
+
+    return this.http.get<Category[]>(url);
+  }
+
 
 }

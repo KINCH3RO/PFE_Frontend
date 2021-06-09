@@ -1,0 +1,3 @@
+.active{
+    @apply w-10 h-10 mx-auto bg-blue-500 rounded-full text-lg text-white flex items-center;
+}

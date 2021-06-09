@@ -31,7 +31,7 @@ export class UserAccountComponent implements OnInit {
   userId: number;
   profilePic: string;
   roles: Observable<any>
-  isAdmin:boolean=true;
+  isAdmin: boolean = true;
 
   personalForm: FormGroup = this.fb.group({
     idUser: [''],
@@ -145,7 +145,7 @@ export class UserAccountComponent implements OnInit {
 
     await this.userS.updateUser(updatedUser).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: "Your personnal info has been updated" })
-       this.securityForm.reset();
+      this.securityForm.reset();
     }).catch(err => {
       this.eventEmitter.showPopUP({
         type: "error", message: err.error
@@ -154,33 +154,33 @@ export class UserAccountComponent implements OnInit {
   }
 
   async updateAccountPreInfo() {
-    let newRoles:Role[] = []
-    let checkedElements=0;
+    let newRoles: Role[] = []
+    let checkedElements = 0;
 
     var updatedUser: User = new User(this.currenTuser);
     updatedUser.accountStatus = this.accountStatus.value;
 
     var rolesControls = this.elem.nativeElement.querySelectorAll('.roles');
-    updatedUser.role.length=0
+    updatedUser.role.length = 0
     rolesControls.forEach(element => {
       if (element.checked) {
         checkedElements++;
- 
+
         updatedUser.role.push({ idRole: element.id })
       }
     });
 
-    if(checkedElements==0){
+    if (checkedElements == 0) {
       this.eventEmitter.showPopUP({ type: "warning", message: "Please check a role" })
       return;
     }
-    
-  
- 
+
+
+
 
     await this.userS.updateUser(updatedUser).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: "account status info has been updated" })
-      
+
     }).catch(err => {
       this.eventEmitter.showPopUP({
         type: "error", message: err.error
@@ -238,12 +238,21 @@ export class UserAccountComponent implements OnInit {
 
   async onFileSelected(event) {
 
-
+    //update user photo
+    var updatedUser: User = new User(this.currenTuser)
+    this.profilePic = "";
     var selectedFile: File = event.target.files[0];
-    await this.fileUpload.uploadFile(selectedFile, this.currenTuser.idUser.toString()).then(data => {
+   await this.fileUpload.uploadFile(selectedFile).then(data => {
 
       this.eventEmitter.showPopUP({ type: "info", message: "your image has been uploaded succesfully" })
+      console.log(data);
 
+      updatedUser.profilePhotoUrl = "/static/UploadedFiles/Images/" + data;
+      this.userS.updateUser(updatedUser).toPromise().catch(err => {
+        this.eventEmitter.showPopUP({
+          type: "error", message: err.error
+        })
+      })
 
 
 
@@ -252,25 +261,11 @@ export class UserAccountComponent implements OnInit {
       this.eventEmitter.showPopUP({ type: "error", message: err.error })
     });
 
-    //update user photo
-    var updatedUser: User = new User(this.currenTuser);
 
-
-    updatedUser.profilePhotoUrl = "/static/UploadedFiles/Images/profilePic" + this.currenTuser.idUser + '.' + selectedFile.name.split('.').pop();;
-    this.profilePic = "";
-
-
+    await new Promise(r=>setTimeout(r,5000))
     //update the DOM
-
-
-
-
-    await this.userS.updateUser(updatedUser).toPromise().catch(err => {
-      this.eventEmitter.showPopUP({
-        type: "error", message: err.error
-      })
-    })
-    await new Promise(r => setTimeout(r, 5000));
     this.profilePic = "http://localhost:8080/api" + updatedUser.profilePhotoUrl
+
+
   }
 }
