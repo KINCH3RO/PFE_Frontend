@@ -52,6 +52,10 @@ export class ProfileService {
     return this.http.post<Profile>("http://localhost:8080/api/profiles/user", user)
 
   }
+
+  getProfilesByUsers(users:User[]){
+    return this.http.post<Profile[]>("http://localhost:8080/api/profiles/allByUsers", users)
+  }
   
   setPage(id){
     localStorage.setItem(this.PAGE_KEY,id);
@@ -66,6 +70,8 @@ export class ProfileService {
   getPageFromLocalStorage(){
    return localStorage.getItem(this.PAGE_KEY);
   }
+
+
 
   clearPage(){
     this.pageNumber.next(0)

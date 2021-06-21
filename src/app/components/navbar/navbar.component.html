@@ -54,28 +54,35 @@
         <div class="thirdContainer flex flex-col md:flex-row my-auto ">
             <a class="link mx-3 " routerLinkActive="active" routerLink="/home">Home</a>
             <a class="link mx-3 " routerLinkActive="active" routerLink="/services">Services</a>
-            <a class="link mx-3" href="">Orders</a>
-            <a class="link mx-3" href="">Entreprises</a>
+            <a class="link mx-3" routerLinkActive="active" routerLink="/Orders">Orders</a>
+            <a class="link mx-3" routerLinkActive="active" routerLink="/entreprises">Entreprises</a>
         </div>
         <div *ngIf="profile" class="md:hidden font-semibold my-3">Profile</div>
         <div *ngIf="!profile" class="md:hidden font-semibold my-3">Join us</div>
 
         <div class="fourthContainer flex flex-col my-auto">
             <div *ngIf="!profile" routerLink="/login" class="button ">Sign in</div>
-            <div *ngIf="profile " (click)="toggle()" class="flex mx-6 profile cursor-pointer rounded-full w-10 h-10 bg-blue-500">
+            <div *ngIf="profile " (click)="toggle()"
+                class="flex mx-6 profile cursor-pointer rounded-full w-10 h-10 bg-blue-500">
                 <img *ngIf="image" src="" alt="" />
                 <div *ngIf="!image" class="text-white text-center w-full my-auto select-none ">AB</div>
             </div>
 
-            <div *ngIf="profile"
-             [ngClass]="{'md:opacity-0':show,'md:hidden':show}"  class=" sm:opacity-1  flex    dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7  flex-col md:absolute md:shadow md:w-40 ">
-                <a class="link mx-3 md:mx-0 px-12 " (click)='show=true' routerLink="user">Account settings</a>
-                <a *ngIf="hasProfile" routerLink="/profile" class="link  mx-3 md:mx-0  ">Profile</a>
-                <a *ngIf="hasProfile" routerLink="/myServices" class="link  mx-3 md:mx-0  ">MyServices</a>
-                <a class="link mx-3 md:mx-0" href="">Orders</a>
-                <a *ngIf="!hasProfile" routerLink="/CreationSteps" class="link mx-3 md:mx-0" href="">Create a profile</a>
-                <a routerLink="/panel" class="link mx-3 md:mx-0" href="">Admin settings</a>
-                <a (click)="logout()" class=" mx-3 md:mx-0 px-3 py-2 rounded-sm hover:shadow duration-500 transition-colors hover:text-white hover:bg-red-500 my-2 md:my-0" href="">Log out</a>
+            <div *ngIf="profile" [ngClass]="{'md:opacity-0':show,'md:hidden':show}"
+                class=" sm:opacity-1  flex    dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7  flex-col md:absolute md:shadow md:w-40 ">
+                <a (click)='show=true' routerLinkActive="active" class="link mx-3 md:mx-0 px-12 " routerLink="user">Account settings</a>
+                <a (click)='show=true' routerLinkActive="active" *ngIf="hasProfile" routerLink="/profile" class="link  mx-3 md:mx-0  ">Profile</a>
+                <a (click)='show=true' routerLinkActive="active" *ngIf="hasProfile" routerLink="/myServices" class="link  mx-3 md:mx-0  ">My
+                    Services</a>
+                <a (click)='show=true' routerLinkActive="active" routerLink="/myOrders" class="link mx-3 md:mx-0">My Orders</a>
+                <a (click)='show=true' routerLinkActive="active" routerLink="/myEntreprises" class="link mx-3 md:mx-0">My Entreprises</a>
+                <a (click)='show=true' routerLinkActive="active" *ngIf="!hasProfile" routerLink="/CreationSteps" class="link mx-3 md:mx-0"
+                  >Create a
+                    profile</a>
+                <a (click)='show=true' routerLinkActive="active" routerLink="/panel" class="link mx-3 md:mx-0" href="">Admin settings</a>
+                <a (click)="logout()"
+                    class=" mx-3 md:mx-0 px-3 py-2 rounded-sm hover:shadow duration-500 transition-colors hover:text-white hover:bg-red-500 my-2 md:my-0"
+                    href="">Log out</a>
             </div>
         </div>
 

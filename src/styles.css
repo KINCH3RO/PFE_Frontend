@@ -9,30 +9,56 @@
 }
 
 .marker {
-
-   
    border-radius: 50%;
    cursor: pointer;
-   
    animation: floating 3s ease-in-out infinite
 }
 
-
-
 @keyframes floating {
-	0% { margin-top :0px }
-	
-	
-	50% { margin-top: -3px; }
-  
-	100% { margin-top: 0px; }	
+   0% {
+      margin-top: 0px
+   }
+   50% {
+      margin-top: -3px;
+   }
+   100% {
+      margin-top: 0px;
+   }
 }
 
 .mapboxgl-popup {
    max-width: 200px;
- }
- 
- .mapboxgl-popup-content {
+}
+
+.mapboxgl-popup-content {
    text-align: center;
    font-family: 'Open Sans', sans-serif;
- }
+}
+
+::-webkit-scrollbar {
+   width: 7px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+   background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+   background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+   background: rgb(23, 102, 175);
+}
+
+* {
+   scrollbar-width: thin;
+   scrollbar-color: rgb(23, 102, 175);
+
+}

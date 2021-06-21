@@ -31,10 +31,22 @@ import { LoggedInGuard } from './guards/logged-in.guard';
 import { SearchPageComponent } from './components/services/search-page/search-page.component';
 import { ManageIrlCatComponent } from './components/manage-irl-cat/manage-irl-cat.component';
 import { ServicesMapComponent } from './components/services/services-map/services-map.component';
+import { CreateOrderComponent } from './components/order/create-order/create-order.component';
+import { MyOrdersComponent } from './components/order/my-orders/my-orders.component';
+import { OrdersPageComponent } from './components/order/orders-page/orders-page.component';
+import { SubmittedOffersComponent } from './components/order/submitted-offers/submitted-offers.component';
+import { CreateEntrepriseComponent } from './components/entreprise/create-entreprise/create-entreprise.component';
+import { EntreprisePageComponent } from './components/entreprise/entreprise-page/entreprise-page.component';
+import { MyEntreprisesComponent } from './components/entreprise/my-entreprises/my-entreprises.component';
+import { EntreprisesComponent } from './components/entreprise/entreprises/entreprises.component';
+import { ViewParticipantsComponent } from './components/entreprise/view-participants/view-participants.component';
 
 
 const routes: Routes = [
+
+  { path: '', redirectTo:'home',pathMatch:'full' },
   { path: 'home', component: HomeComponent },
+
   {
     path: 'profile', children: [
 
@@ -102,7 +114,23 @@ const routes: Routes = [
   { path: 'editService/:id', component: EditServiceComponent },
   { path: 'service/:id', component: ServicePageComponent },
   { path: 'services', component: SearchPageComponent },
-  { path: 'mapSearch', component: ServicesMapComponent }
+  { path: 'mapSearch', component: ServicesMapComponent },
+
+  { path: 'createOrder', component: CreateOrderComponent },
+  { path: 'myOrders', component: MyOrdersComponent },
+  { path: 'Orders', component: OrdersPageComponent },
+  { path: 'editOrder/:id', component: CreateOrderComponent },
+  { path: 'sumbittedOffers/:id', component: SubmittedOffersComponent },
+
+  { path: 'createEntreprise', component: CreateEntrepriseComponent },
+  { path: 'editEntreprise/:id', component: CreateEntrepriseComponent },
+  { path: 'entreprise/:id', component: EntreprisePageComponent },
+  { path: 'myEntreprises', component: MyEntreprisesComponent },
+  { path: 'entreprises', component: EntreprisesComponent },
+  { path: 'entreprise/:id/:recId', component: ViewParticipantsComponent },
+
+
+
 
 
 ];

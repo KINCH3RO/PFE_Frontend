@@ -61,6 +61,7 @@ export class UserAccountComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.isAdmin=this.auth.containRole("USER_ADMIN")
     this.displayData();
   }
 
@@ -195,6 +196,7 @@ export class UserAccountComponent implements OnInit {
     }
     return false;
   }
+  
   get accountStatus() {
     return this.accountPreForm.get('accountStatus');
   }
@@ -242,7 +244,7 @@ export class UserAccountComponent implements OnInit {
     var updatedUser: User = new User(this.currenTuser)
     this.profilePic = "";
     var selectedFile: File = event.target.files[0];
-   await this.fileUpload.uploadFile(selectedFile).then(data => {
+    await this.fileUpload.uploadFile(selectedFile).then(data => {
 
       this.eventEmitter.showPopUP({ type: "info", message: "your image has been uploaded succesfully" })
       console.log(data);
@@ -262,7 +264,7 @@ export class UserAccountComponent implements OnInit {
     });
 
 
-    await new Promise(r=>setTimeout(r,5000))
+    await new Promise(r => setTimeout(r, 5000))
     //update the DOM
     this.profilePic = "http://localhost:8080/api" + updatedUser.profilePhotoUrl
 

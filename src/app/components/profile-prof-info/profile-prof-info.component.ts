@@ -142,6 +142,9 @@ export class ProfileProfInfoComponent implements OnInit {
 
   deleteEducations(i) {
     this.educations.splice(i, 1);
+    this.educationIndex = -1;
+    this.educationButton = "Add";
+    this.educationFrom.reset();
   }
 
   displayEducations(i) {
@@ -184,6 +187,9 @@ export class ProfileProfInfoComponent implements OnInit {
 
   deleteCertification(i) {
     this.certifications.splice(i, 1);
+    this.certificationIndex = -1;
+    this.certificationButton = "Add";
+    this.certificationForm.reset();
   }
 
   displayCertification(i) {
@@ -228,6 +234,9 @@ export class ProfileProfInfoComponent implements OnInit {
 
   deleteOccupation(i) {
     this.occupations.splice(i, 1);
+    this.occupationIndex = -1;
+    this.occupationButton = "Add";
+    this.occupationForm.reset();
   }
 
   displayOccupation(i) {

@@ -43,6 +43,16 @@ import { MarkerComponent } from './components/marker/marker.component';
 import { SearchPageComponent } from './components/services/search-page/search-page.component';
 import { ServicesMapComponent } from './components/services/services-map/services-map.component';
 import { ManageIrlCatComponent } from './components/manage-irl-cat/manage-irl-cat.component';
+import { CreateOrderComponent } from './components/order/create-order/create-order.component';
+import { MyOrdersComponent } from './components/order/my-orders/my-orders.component';
+import { OrdersPageComponent } from './components/order/orders-page/orders-page.component';
+import { SubmittedOffersComponent } from './components/order/submitted-offers/submitted-offers.component';
+import { CreateEntrepriseComponent } from './components/entreprise/create-entreprise/create-entreprise.component';
+import { EntreprisePageComponent } from './components/entreprise/entreprise-page/entreprise-page.component';
+import { MyEntreprisesComponent } from './components/entreprise/my-entreprises/my-entreprises.component';
+import { ViewParticipantsComponent } from './components/entreprise/view-participants/view-participants.component';
+import { EntreprisesComponent } from './components/entreprise/entreprises/entreprises.component';
+
 
 
 
@@ -84,6 +94,16 @@ import { ManageIrlCatComponent } from './components/manage-irl-cat/manage-irl-ca
     SearchPageComponent,
     ServicesMapComponent,
     ManageIrlCatComponent,
+    CreateOrderComponent,
+    MyOrdersComponent,
+    OrdersPageComponent,
+    SubmittedOffersComponent,
+    CreateEntrepriseComponent,
+    EntreprisePageComponent,
+    MyEntreprisesComponent,
+    ViewParticipantsComponent,
+    EntreprisesComponent,
+
     
   
 

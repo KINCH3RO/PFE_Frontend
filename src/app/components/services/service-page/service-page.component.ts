@@ -49,6 +49,7 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
       this.imagesArray = this.currentService.serviceImageUrl;
       this.videosArray = this.currentService.videoImageUrl;
       this.packages = data.plans;
+      this.sort();
       this.features.push({
         header: (this.currentService.user.name + ' ' + this.currentService.user.familyName),
         description: this.currentService.title,
@@ -68,6 +69,30 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
     }).catch(err => {
 
     })
+
+  }
+
+  sort() {
+
+
+    this.packages.sort((a, b) => {
+
+      if (a.packageLevel > b.packageLevel) {
+        return 1;
+      }
+      if (a.packageLevel < b.packageLevel) {
+        return -1;
+      }
+      return 0;
+
+    })
+
+
+  }
+  showPackage(id) {
+
+    this.selectedPackageIndex = id;
+
 
   }
 

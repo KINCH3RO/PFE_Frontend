@@ -16,5 +16,7 @@ export class AppComponent implements OnInit{
    
     this.auth.isUserLogged.next(this.auth.isUserLoggedIn())
     this.profileSer.getPage();
+    
+    
   }
 }

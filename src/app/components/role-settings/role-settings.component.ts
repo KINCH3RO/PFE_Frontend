@@ -54,6 +54,7 @@ export class RoleSettingsComponent implements OnInit {
       if (this.addRole) {
         this.roleSer.addRole(this.roleForm.value).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: "success", message: "role has been added" })
+          this.displayData();
         }).catch(err => {
           this.eventEmitter.showPopUP({ type: "error", message: err.error })
         })
@@ -61,13 +62,14 @@ export class RoleSettingsComponent implements OnInit {
         this.name.enable();
         this.roleSer.updateRole(this.roleForm.value).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: "success", message: "role has been updated" })
+          this.displayData();
         }).catch(err => {
           this.eventEmitter.showPopUP({ type: "error", message: err.error })
         })
 
       }
       this.closeRoleModal();
-      this.displayData();
+
 
     }
   }
@@ -135,11 +137,12 @@ export class RoleSettingsComponent implements OnInit {
 
     this.roleSer.deleteRole(this.deleteRoleId).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: data })
+      this.displayData();
     }).catch(err => {
       this.eventEmitter.showPopUP({ type: "error", message: err.error })
     })
 
-    this.displayData();
+
     this.closeModal();
   }
 

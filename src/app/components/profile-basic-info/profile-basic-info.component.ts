@@ -23,12 +23,12 @@ export class ProfileBasicInfoComponent implements OnInit {
     private eventEmitter: EventemitterService,
     private router: Router) { }
 
-    ngOnInit(): void {
-      this.profileSer.setPage(1);
-      this.countries = this.countrySer.getAllCountries();
-      this.displayData();
-    }
-    
+  ngOnInit(): void {
+    this.profileSer.setPage(1);
+    this.countries = this.countrySer.getAllCountries();
+    this.displayData();
+  }
+
   languages: any = []
   language: string = "";
   languagelevel: string;
@@ -36,7 +36,7 @@ export class ProfileBasicInfoComponent implements OnInit {
   addOrSave = "Add";
   countries: Observable<any[]>;
   profileExist = false;
-  
+
 
   profileForm: FormGroup = this.fb.group({
     city: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,10 +45,10 @@ export class ProfileBasicInfoComponent implements OnInit {
     streetAddress: ['', []],
     protfolioWebSiteUrl: ['', [Validators.pattern(/^(https?\:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(\/[\w]*)*$/)]],
     speciality: ['', [Validators.required, Validators.minLength(3)]],
-    primaryL: ['', [Validators.required, Validators.minLength(3)]],
+    primaryLanguage: ['', [Validators.required, Validators.minLength(3)]],
     profileDate: [new Date(), []],
 
-   
+
   })
 
 
@@ -68,8 +68,8 @@ export class ProfileBasicInfoComponent implements OnInit {
           streetAddress: profile.streetAddress,
           protfolioWebSiteUrl: profile.protfolioWebSiteUrl,
           profileDate: profile.profileDate,
-          primaryL:profile.primaryLanguage,
-          speciality:profile.speciality
+          primaryLanguage: profile.primaryLanguage,
+          speciality: profile.speciality
 
         })
         this.languages = profile.languages;
@@ -103,6 +103,10 @@ export class ProfileBasicInfoComponent implements OnInit {
 
   deleteLanguage(i) {
     this.languages.splice(i, 1);
+    this.addOrSave = "Add";
+    this.index = -1;
+    this.language = "";
+    this.languagelevel = "Beginner";
   }
 
   displayTableData(i) {
@@ -207,7 +211,7 @@ export class ProfileBasicInfoComponent implements OnInit {
   }
 
   get primaryL() {
-    return this.profileForm.get("primaryL");
+    return this.profileForm.get("primaryLanguage");
   }
 
 }

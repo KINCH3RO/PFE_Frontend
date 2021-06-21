@@ -85,7 +85,7 @@ export class EditServiceComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.offerId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
+    this.offerId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
 
     this.displayData();
     sessionStorage.removeItem('mapLocation')

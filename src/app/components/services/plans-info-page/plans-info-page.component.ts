@@ -122,11 +122,7 @@ export class PlansInfoPageComponent implements OnInit {
   }
 
   showPackage(id) {
-
     this.selectedPackageIndex = id;
-
-
-
   }
 
   deletePackage(id) {

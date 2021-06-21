@@ -131,7 +131,7 @@
                                     </select>
 
                                     <div *ngIf="(category.dirty || category.touched) && category.errors" class="errors">
-                                        <span *ngIf="category.errors?.required">Country is required</span>
+                                        <span *ngIf="category.errors?.required">category is required</span>
 
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
 
                                         <div *ngIf="(sub_cat.dirty || sub_cat.touched) && sub_cat.errors"
                                             class="errors">
-                                            <span *ngIf="sub_cat.errors?.required">Country is required</span>
+                                            <span *ngIf="sub_cat.errors?.required">subcat is required</span>
 
                                         </div>
                                     </div>

@@ -22,7 +22,7 @@ export class CategoryServiceService {
   }
 
   delete(id) {
-    return this.http.delete("http://localhost:8080/api/category/delete/" + id);
+    return this.http.delete("http://localhost:8080/api/category/delete/" + id,{responseType:'text'});
 
   }
   getOne(id) {
@@ -51,7 +51,7 @@ export class CategoryServiceService {
   }
 
   deleteSubCat(id) {
-    return this.http.delete("http://localhost:8080/api/category/subcat/delete/" + id);
+    return this.http.delete("http://localhost:8080/api/category/subcat/delete/" + id,{responseType:'text'});
 
   }
   getOneSubcat(id) {
@@ -79,7 +79,7 @@ export class CategoryServiceService {
   }
 
   deleteIRLCategory(id) {
-    return this.http.delete("http://localhost:8080/api/category/irlCat/delete/" + id);
+    return this.http.delete("http://localhost:8080/api/category/irlCat/delete/" + id,{responseType:'text'});
 
   }
   getOneIRLCategory(id) {

@@ -75,31 +75,13 @@
     class="duration-500 transition-opacity op fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title"
     role="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <!--
-        Background overlay, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
+
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
-        <!--
-        Modal panel, show/hide based on modal state.
-  
-        Entering: "ease-out duration-300"
-          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          To: "opacity-100 translate-y-0 sm:scale-100"
-        Leaving: "ease-in duration-200"
-          From: "opacity-100 translate-y-0 sm:scale-100"
-          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-      -->
+
         <div
             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
             <form [formGroup]="categoryForm">
@@ -179,23 +161,16 @@
                 </div>
                 <div class="actions">
                     <div class="relative">
-                        <button (click)="showCategoryModal()" type="submit"
-                            class="  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            <svg class="text-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                width="24" height="24" viewBox="0 0 172 172" style=" fill:#000000;">
-                                <g fill="none" fill-rule="none" stroke="none" stroke-width="1" stroke-linecap="butt"
-                                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
-                                    stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
-                                    text-anchor="none" style="mix-blend-mode: normal">
-                                    <path d="M0,172v-172h172v172z" fill="none" fill-rule="nonzero"></path>
-                                    <g fill="#ffffff" fill-rule="evenodd">
-                                        <path
-                                            d="M78.83333,14.33333v64.5h-64.5v14.33333h64.5v64.5h14.33333v-64.5h64.5v-14.33333h-64.5v-64.5z">
-                                        </path>
-                                    </g>
-                                </g>
+                        <div (click)="showCategoryModal()"
+                        class="ml-2 h-9 w-9 bg-white border-2 border-gray-200  hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
+                        <span class="text-center  w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="w-full" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
-                        </button>
+                        </span>
+                    </div>
 
                     </div>
                 </div>
@@ -255,7 +230,7 @@
 
                                     <div class="flex item-center justify-start">
 
-                                       
+
                                         <div (click)='showCategoryModal(cat)'
                                             class="w-4 mr-2 transform cursor-pointer hover:text-blue-500 hover:scale-110">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

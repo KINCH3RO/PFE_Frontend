@@ -1,0 +1,153 @@
+<div class="container  mx-auto">
+
+    <!-- <div class="filter mt-4 max-w-3xl md:mx-auto flex md:flex-row flex-col mx-2   md:justify-between">
+        <div class="flex md:flex-row flex-col">
+            <select (change)="displayData()" [(ngModel)]="sortAsc"
+                class="mt-1 block mr-2 pr-7  py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+
+                <option value="false">Old to New</option>
+                <option value="true">New to Old</option>
+
+
+            </select>
+
+            <div class="relative">
+                <svg class="absolute right-0 my-auto h-full mr-2" xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+                <input [(ngModel)]="title" (input)="displayData()" type="text"
+                    class="mb-2 md:mb-0 w-full md:min-w-0 mt-1 pr-10 focus:ring-blue-500 focus:border-blue-500 block  shadow-sm sm:text-sm border-gray-300 rounded-md">
+            </div>
+
+
+        </div>
+
+        <div routerLink="/createEntreprise"
+            class="w-10 h-10 my-auto bg-white border-2 border-gray-200  hover:border-blue-400 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
+            <span class="text-center  w-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="w-full"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+            </span>
+        </div>
+
+
+
+    </div> -->
+
+    <div class="max-w-3xl md:mx-auto">
+        <h1 class="text-xl mb-2 mt-4">Participents of {{jobName}} job</h1>
+
+        <div *ngFor="let participent of (participantsProfile | async)" class="mt-4 w-full shadow sm:rounded-md sm:overflow-hidden  ">
+
+            <div class="md:px-4 py-5 bg-white space-y-6 sm:p-6 ">
+                <div class="md:px-5  sm:mt-0 w-screen overflow-x-hidden flex flex-col md:flex-row justify-between">
+    
+                    <section class="flex flex-col md:flex-row pl-12 mb-2 md:mb-0">
+                        <div class="profilePic cursor-pointer hover:text-blue-500  flex flex-col text-center mx-auto md:mx-0 "
+                            routerLink="/profile/{{participent.user.idUser}}">
+                            <img class="w-40 h-40 object-cover border-2 rounded-full mb-2"
+                                src="http://localhost:8080/api/{{participent.user.profilePhotoUrl}}" alt="">
+                            <div>{{participent.user.name+' '+participent.user.familyName}}</div>
+                        </div>
+    
+                        <div class="divider block md:hidden   border-b w-10/12 my-12 mx-auto "> </div>
+                        <div class="hidden md:block divider border h-40 my-auto mx-20"></div>
+    
+                        <ul class="flex flex-col md:my-auto">
+                            <li class="flex justify-between md:w-72 mb-5">
+                                <div class="key flex ">
+                                    <svg class="my-auto mr-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" />
+                                        <path fill-rule="evenodd"
+                                            d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
+                                    </svg>
+    
+                                    Location
+    
+                                </div>
+                                <div class="key"> {{participent.country}} </div>
+                            </li>
+    
+                            <li class="flex justify-between w-full mb-5">
+                                <div class="key flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class=" my-auto mr-3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                    </svg>
+    
+                                    Member Since
+    
+                                </div>
+                                <div class="key"> {{participent.user.entryDate | date}} </div>
+                            </li>
+    
+                            <li class="flex justify-between w-full mb-5">
+                                <div class="key flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="my-auto mr-3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z" />
+                                        <path
+                                            d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z" />
+                                    </svg>
+                                    Primary Language
+    
+                                </div>
+                                <div class="key"> {{participent.primaryLanguage}} </div>
+                            </li>
+    
+                            <li class="flex justify-between w-full mb-5">
+                                <div class="key flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="my-auto mr-3" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                    </svg>
+                                    Speciality
+    
+                                </div>
+                                <div class="key"> {{participent.speciality}} </div>
+                            </li>
+                        </ul>
+    
+    
+                    </section>
+    
+    
+                </div>
+    
+                <div class=" ">
+                    <div class="py-0.5">
+                        <div class="border-t border-gray-200"></div>
+                    </div>
+                </div>
+                <h3 class=" px-12 md:px-0 text-lg font-medium leading-6 text-gray-900">Description</h3>
+                <p class=" px-12 md:px-0 text-sm text-gray-600 break-words">
+                    {{participent.description}}
+                </p>
+    
+    
+            </div>
+    
+        </div>
+    </div>
+    
+   
+
+    <!-- <div class="flex justify-center">
+        <button *ngIf="(entreprises | async)?.totalElements>pageSize" (click)="loadMore()"
+            class="max-w-3xl  w-full  py-4 px-8 bg-white shadow-lg rounded-lg mt-2 mb-4 transition hover:bg-blue-500 hover:text-white ">Load
+            more</button>
+
+        <div *ngIf="(entreprises | async)?.totalElements<=pageSize" class="mb-20"></div>
+    </div> -->
+
+</div>

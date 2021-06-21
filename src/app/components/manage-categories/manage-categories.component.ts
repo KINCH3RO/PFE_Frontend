@@ -49,35 +49,30 @@ export class ManageCategoriesComponent implements OnInit {
   displayData() {
 
     this.paginCategories = this.catSer.getAllPaginCategories(this.pageSize, this.pageNumber, this.categoryName)
-
-
   }
 
 
   updatecategory() {
-
-
-
     if (this.categoryForm.valid) {
-
-
       if (this.addCategory) {
         this.catSer.addCategory(this.categoryForm.value).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: "success", message: "Category has been added" })
+          this.displayData();
         }).catch(err => {
           this.eventEmitter.showPopUP({ type: "error", message: err.error })
         })
       } else {
         
-        this.catSer.addCategory(this.categoryForm.value).toPromise().then(data => {
+        this.catSer.update(this.categoryForm.value).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: "success", message: "Category has been updated" })
+          this.displayData();
         }).catch(err => {
           this.eventEmitter.showPopUP({ type: "error", message: err.error })
         })
 
       }
       this.closeCategoryModal();
-      this.displayData();
+    
 
     }
   }
@@ -128,13 +123,14 @@ export class ManageCategoriesComponent implements OnInit {
 
     this.catSer.delete(this.deleteCategoryId).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: data })
+      this.displayData();
     }).catch(err => {
       this.eventEmitter.showPopUP({ type: "error", message: err.error })
       console.log(err.error);
       
     })
 
-    this.displayData();
+
     this.closeModal();
   }
 

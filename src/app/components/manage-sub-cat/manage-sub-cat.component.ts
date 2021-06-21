@@ -156,14 +156,14 @@ export class ManageSubCatComponent implements OnInit {
 
     this.catSer.deleteSubCat(this.deleteCategoryId).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: data })
-   
+      this.displayData();
     }).catch(err => {
       this.eventEmitter.showPopUP({ type: "error", message: err.error })
       console.log(err.error);
 
     })
 
-    this.displayData();
+
     this.closeModal();
   }
 

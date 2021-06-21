@@ -176,6 +176,9 @@ export class EditProfileComponent implements OnInit {
 
   deleteEducations(i) {
     this.educations.splice(i, 1);
+    this.educationIndex = -1;
+    this.educationButton = "Add";
+    this.educationFrom.reset();
   }
 
   displayEducations(i) {
@@ -218,6 +221,9 @@ export class EditProfileComponent implements OnInit {
 
   deleteCertification(i) {
     this.certifications.splice(i, 1);
+    this.certificationIndex = -1;
+    this.certificationButton = "Add";
+    this.certificationForm.reset();
   }
 
   displayCertification(i) {
@@ -262,6 +268,9 @@ export class EditProfileComponent implements OnInit {
 
   deleteOccupation(i) {
     this.occupations.splice(i, 1);
+    this.occupationIndex = -1;
+    this.occupationButton = "Add";
+    this.occupationForm.reset();
   }
 
   displayOccupation(i) {
@@ -304,6 +313,10 @@ export class EditProfileComponent implements OnInit {
 
   deleteLanguage(i) {
     this.languages.splice(i, 1);
+    this.addOrSave = "Add";
+    this.index = -1;
+    this.language = "";
+    this.languagelevel = "Beginner";
   }
 
   displayTableData(i) {

@@ -1,0 +1,46 @@
+<div class="container  mx-auto">
+
+
+    <div *ngFor="let service of (order | async)?.services"
+        class="max-w-3xl    bg-white shadow-lg rounded-lg mt-10  mx-auto">
+
+        <div class=" flex">
+            <img class="offer-img h-60 rounded-l-lg w-72 object-cover md:mr-5 "
+                src="http://localhost:8080/api/{{service.serviceImageUrl[service.mainPhotoIndex]}}" alt="">
+            <div class=" content flex flex-col md:justify-between   py-2">
+
+                <div class="text-content flex flex-col break-words">
+                    <div class="flex hover:text-blue-500  cursor-pointer" routerLink="/profile/{{service.user.id}}">
+                        <img class="mb-2 mr-4 rounded-full w-10 h-10 object-cover my-auto"
+                            src="{{env.endPoint+service.user.profilePhotoUrl}}" alt="">
+                        <div class="text-base my-auto">{{service.user.name +' '+service.user.familyName}}</div>
+                    </div>
+                    <h2 class="text-gray-800  font-semibold">{{service.title}}</h2>
+                    <p class="mt-2 text-sm text-gray-600  inline-block">{{service.description}} </p>
+                    <a href="#" *ngIf="service.degital"
+                        class="text-lg font-semibold mt-2 text-blue-500">{{service.plans[0].price}} DH /
+                        {{service.plans[0].deliveryTime+''+service.plans[0].deliveryTimeUnit}} </a>
+                </div>
+
+
+                <div class="actions flex flex-row">
+                    <button type="submit"
+                        class=" md:mr-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Custom offer
+                    </button>
+                    <button routerLink="/service/{{service.id}}" type="submit"
+                        class="  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Check offer
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>

@@ -15,4 +15,10 @@ export class CountryService {
   getAllCountries(){
   return  this.http.get<any[]>("https://restcountries.eu/rest/v2/all");
   }
+
+  getAllCities(country:string){
+
+    let countryObject ={country}
+    return this.http.post("https://countriesnow.space/api/v0.1/countries/cities",countryObject);
+  }
 }

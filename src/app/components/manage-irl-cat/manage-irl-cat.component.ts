@@ -128,13 +128,14 @@ export class ManageIrlCatComponent implements OnInit {
 
     this.catSer.deleteIRLCategory(this.deleteCategoryId).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: data })
+      this.displayData();
     }).catch(err => {
       this.eventEmitter.showPopUP({ type: "error", message: err.error })
       console.log(err.error);
       
     })
 
-    this.displayData();
+
     this.closeModal();
   }
 

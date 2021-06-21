@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
 
 
 
-  displaymap() {
+  async displaymap() {
     mapboxgl.accessToken = environment.mapBoxAccessToken;
     // mapboxgl.setRTLTextPlugin(
     //   'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
@@ -86,7 +86,7 @@ export class MapComponent implements OnInit {
     }
   }
 
-  addMarker(map) {
+  async addMarker(map) {
 
 
 

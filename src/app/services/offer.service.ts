@@ -64,6 +64,10 @@ export class OfferService {
     return this.http.get("http://localhost:8080/api/services/allByUser/" + userId)
   }
 
+  findAllByUserAndType(userId: number,type:boolean) {
+    return this.http.get("http://localhost:8080/api/services/allByUser/" + userId+"/"+type);
+  }
+
   findOfferById(id:number){
     return this.http.get<Offer>("http://localhost:8080/api/services/" + id)
   }

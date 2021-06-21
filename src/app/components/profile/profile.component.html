@@ -80,34 +80,39 @@
         </section>
 
         <div class="actionButton flex md:flex-col justify-center">
+           
+
             <div *ngIf="showEditButton" routerLink="/editProfile"
-                class=" mx-2 md:mx-0 mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
-                    <path
-                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                </svg>
-
+                class="mx-2 md:mx-0 mb-2 h-9 w-9 bg-white border-2 border-gray-200  hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
+                <span class="text-center  w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-full"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                    </svg>
+                </span>
             </div>
 
             <div
-                class="  mx-2 md:mx-0  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
-                    <path
-                        d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z" />
-                </svg>
-
+                class="mx-2 md:mx-0 mb-2 ml-2 h-9 w-9 bg-white border-2 border-gray-200  hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
+                <span class="text-center  w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-full"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z" />
+                    </svg>
+                </span>
             </div>
 
             <div
-                class=" mx-2 md:mx-0  mb-2 cursor-pointer text-center bg-blue-500 px-4 py-2 font-semibold text-white   items-center space-x-2 rounded hover:bg-blue-400 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                    class="mx-auto w-6 h-6 md:w-4 md:h-4" viewBox="0 0 16 16">
-                    <path
-                        d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-                </svg>
-
+                class="mx-2 md:mx-0 mb-2 ml-2 h-9 w-9 bg-white border-2 border-gray-200  hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
+                <span class="text-center  w-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-full"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                    </svg>
+                </span>
             </div>
 
 
@@ -126,9 +131,7 @@
         <section class="grid grid-cols-2  gap-4">
             <div class="container col-span-2 md:col-span-1">
                 <div class="text-black mb-2"> About</div>
-                <div class="max-w-full break-words">
-                    {{profile.description}}
-                </div>
+                <pre class="max-w-full break-words font-sans">{{profile.description}}</pre>
             </div>
 
             <div class="container col-span-2 md:col-span-1">
@@ -183,7 +186,7 @@
             <div *ngIf="offers" class="container  mb-2 grid grid-cols-4 gap-10">
 
 
-               
+
 
                 <div *ngFor="let offer of offers|async" routerLink="/service/{{offer.id}}"
                     class="offer shadow rounded-md w-full md:w-72 col-span-4 md:col-span-1 transition-colors cursor-pointer hover:bg-gray-100">
@@ -201,7 +204,8 @@
                                     class="w-9 h-9 object-cover border-2 rounded-full  mr-2" src="" alt="">
 
 
-                                <span class="mt-auto text-black hover:text-blue-500">{{offer.user.name + ' ' + offer.user.familyName}}</span>
+                                <span class="mt-auto text-black hover:text-blue-500">{{offer.user.name + ' ' +
+                                    offer.user.familyName}}</span>
                             </div>
 
                             <div *ngIf="!offer.degital" class="mt-auto">{{offer.price | currency}}</div>

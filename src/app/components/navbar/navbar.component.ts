@@ -49,6 +49,9 @@ export class NavbarComponent implements OnInit  {
 
     let  u:User =new User();
     u.idUser=this.auth.localUserId();
+    if(u.idUser == null){
+      return;
+    }
     this.profileSer.getProfileByUser(u).toPromise().then(data=>{
         this.hasProfile=data.completed;
     }).catch(err=>{
