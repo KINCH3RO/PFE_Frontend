@@ -17,23 +17,7 @@ export class ProfileService {
 
   constructor(private userSer: UserService, private http: HttpClient, private eventEmitter: EventemitterService) { }
 
-  // addProfile(profile: Profile, userid: number) {
-  //   if (!userid) {
-  //     this.eventEmitter.showPopUP({ type: 'error', message: 'User not found' })
-  //     return;
-  //   }
-
-  //   this.userSer.getUserById(userid).toPromise().then(data => {
-
-  //     profile.user=data;
-
-  //     this.http.post<Profile>("http://localhost:8080/api/profiles/add", profile).toPromise()
-  //   })
-
-
-
-
-  // }
+  
 
   addProfile(profile: Profile) {
 
@@ -47,6 +31,12 @@ export class ProfileService {
 
   }
 
+  getProfileById(id: number) {
+
+    return this.http.get<Profile>("http://localhost:8080/api/profiles/"+id)
+
+  }
+
   getProfileByUser(user:User) {
 
     return this.http.post<Profile>("http://localhost:8080/api/profiles/user", user)
@@ -55,6 +45,14 @@ export class ProfileService {
 
   getProfilesByUsers(users:User[]){
     return this.http.post<Profile[]>("http://localhost:8080/api/profiles/allByUsers", users)
+  }
+
+  getSpeciality(id:number){
+    return this.http.get("http://localhost:8080/api/profiles/getSpecialization/"+id,{responseType:'text'})
+  }
+
+  getProfilesFiltred(pageNumber:number,pageSize:number,country:string='',speciality:string='',language:string =''){
+    return this.http.get(`http://localhost:8080/api/profiles/?pageSize=${pageSize}&pageNumber=${pageNumber}&Country=${country}&Speciality=${speciality}&Language=${language}`)
   }
   
   setPage(id){

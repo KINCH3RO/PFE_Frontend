@@ -39,7 +39,7 @@
                 <span class="mx-4 font-medium">Accounts</span>
             </a>
 
-            <a routerLink="/panel/roles" routerLinkActive="active"
+            <a *ngIf="auth.containRole('ADMIN')" routerLink="/panel/roles" routerLinkActive="active"
                 class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-key"
                     viewBox="0 0 16 16">
@@ -51,7 +51,7 @@
                 <span class="mx-4 font-medium">Roles</span>
             </a>
 
-            <a routerLink="/panel/categories" routerLinkActive="active"
+            <a *ngIf="auth.containRole('ADMIN')" routerLink="/panel/categories" routerLinkActive="active"
                 class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-tag"
                     viewBox="0 0 16 16">
@@ -63,7 +63,7 @@
                 <span class="mx-4 font-medium">Categories</span>
             </a>
 
-            <a routerLink="/panel/irlCategories" routerLinkActive="active"
+            <a *ngIf="auth.containRole('ADMIN')" routerLink="/panel/irlCategories" routerLinkActive="active"
                 class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-tag"
                     viewBox="0 0 16 16">
@@ -75,7 +75,17 @@
                 <span class="mx-4 font-medium">IRL Categories</span>
             </a>
 
-            <a
+            <a *ngIf="auth.containRole('USER_ADMIN')" routerLink="/panel/profiles" routerLinkActive="active"
+            class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg>
+
+            <span class="mx-4 font-medium">Profiles</span>
+        </a>
+
+            <a *ngIf="auth.containRole('ADMIN')"
                 class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

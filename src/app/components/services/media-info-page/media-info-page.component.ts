@@ -24,18 +24,18 @@ export class MediaInfoPageComponent implements OnInit {
     private router: Router,
     private eventEmitter: EventemitterService,
     private auth: AuthService,
-    
+
   ) { }
 
   imagesArray = [];
   videosArray = [];
   mainPhotoIndex = 0;
   loaded: boolean = false;
- 
+
 
 
   ngOnInit(): void {
-     
+
 
     this.displayData();
     this.offerSer.pageNumber.next(3)
@@ -55,7 +55,7 @@ export class MediaInfoPageComponent implements OnInit {
   async deleteAsset(id, type) {
 
     console.log(this.imagesArray);
- 
+
     if (type == "video") {
       this.videosArray.splice(id, 1)
     } else {
@@ -124,7 +124,7 @@ export class MediaInfoPageComponent implements OnInit {
 
 
 
-  
+
 
     this.setAssetsInSession();
 
@@ -139,7 +139,7 @@ export class MediaInfoPageComponent implements OnInit {
 
   }
 
-   initializeCarousel() {
+  initializeCarousel() {
 
     let carousel = document.querySelector('.carousel');
     console.log(carousel);
@@ -163,7 +163,7 @@ export class MediaInfoPageComponent implements OnInit {
 
     basic.plans = plans;
     basic.user = user;
-    basic.mainPhotoIndex=this.mainPhotoIndex;
+    basic.mainPhotoIndex = this.mainPhotoIndex;
     basic.serviceImageUrl = this.imagesArray;
     basic.videoImageUrl = this.videosArray;
     this.offerSer.addService(basic).toPromise().then(data => {
@@ -180,14 +180,14 @@ export class MediaInfoPageComponent implements OnInit {
     let user: User = new User();
     user.idUser = this.auth.localUserId();
     if (!basic) {
-     
+
       this.router.navigateByUrl("/serviceCreation/basic ")
       this.eventEmitter.showPopUP({ type: "info", message: "an error occured please fill the form" })
       return;
     }
     basic.available = true;
-    basic.mainPhotoIndex=this.mainPhotoIndex;
-    basic.user =user;
+    basic.mainPhotoIndex = this.mainPhotoIndex;
+    basic.user = user;
     basic.serviceImageUrl = this.imagesArray;
     basic.videoImageUrl = this.videosArray;
 

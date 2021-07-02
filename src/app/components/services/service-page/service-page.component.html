@@ -2,17 +2,17 @@
     <!-- Header -->
     <div class="flex justify-between flex-col md:flex-row  ">
         <div class="flex justify-center md:justify-start mx-5 md:mx-0">
-            <div class="flex hover:text-blue-500  cursor-pointer" routerLink="/profile/{{currentService.user.id}}">
+            <div class="flex hover:text-blue-500  cursor-pointer" routerLink="/profile/{{currentService.user.idUser}}">
                 <img class="mr-4 rounded-full w-10 h-10 object-cover my-auto"
                     src="{{env.endPoint+currentService.user.profilePhotoUrl}}" alt="">
-                <div class="text-base my-auto">{{currentService.user.name +' '+currentService.user.familyName}}</div>
+                <div class="text-base my-auto">{{currentService.user.name +' '+currentService.user.familyName | titlecase}}</div>
             </div>
             <div class="line h-8 w-px bg-gray-500 mx-5 my-auto"> </div>
             <h1 class="text-lg text-black my-auto break-words">{{currentService.title}}</h1>
         </div>
 
         <div class="actionButton flex justify-center mt-5 md:mt-0">
-      
+
             <div routerLink="/editService/{{currentService.id}}"
                 class="h-9 w-9 bg-white border-2 border-gray-200  hover:border-blue-400 hover:text-blue-500 transition-colors cursor-pointer rounded-full text-lg text-gray-600 flex items-center">
                 <span class="text-center  w-full">
@@ -152,7 +152,7 @@
                             <div class="text-lg text-blue-600">{{currentService.price +' / '+currentService.deliveryTime
                                 +' '+ currentService.deliveryTimeUnit}}</div>
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Contact seller</h3>
-                            <button type="submit"
+                            <button (click)="contact()" type="submit"
                                 class=" col-span-12 md:col-span-3 right-0 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 Contact
                             </button>
@@ -339,7 +339,7 @@
                                     routerLink="/profile/{{currentService.user.idUser}}">
                                     <img class="w-40 h-40 object-cover border-2 rounded-full mb-2"
                                         src="http://localhost:8080/api/{{currentService.user.profilePhotoUrl}}" alt="">
-                                    <div>{{currentService.user.name+' '+currentService.user.familyName}}</div>
+                                    <div>{{currentService.user.name+' '+currentService.user.familyName | titlecase}}</div>
                                 </div>
 
                                 <div class="divider block md:hidden   border-b w-10/12 my-12 mx-auto "> </div>
@@ -355,9 +355,7 @@
                                                 <path fill-rule="evenodd"
                                                     d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
                                             </svg>
-
                                             Location
-
                                         </div>
                                         <div class="key"> {{profile.country}} </div>
                                     </li>
@@ -420,6 +418,11 @@
                         <p class=" px-12 md:px-0 text-sm text-gray-600 break-words">
                             {{profile.description}}
                         </p>
+
+                        <button *ngIf="currentService.degital" (click)="contact()" type="submit"
+                            class="w-full md:w-auto mx-3 md:mx-0 next py-2 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Contact
+                        </button>
 
 
                     </div>

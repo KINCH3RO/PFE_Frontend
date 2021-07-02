@@ -53,36 +53,36 @@ export class OfferService {
   }
 
   addService(value) {
-    return this.http.post("http://localhost:8080/api/services/add", value)
+    return this.http.post("http://localhost:8080/api/service/add", value)
   }
 
   addIRLService(value) {
-    return this.http.post("http://localhost:8080/api/services/addIRL", value)
+    return this.http.post("http://localhost:8080/api/service/addIRL", value)
   }
 
   findAllByUser(userId: number) {
-    return this.http.get("http://localhost:8080/api/services/allByUser/" + userId)
+    return this.http.get("http://localhost:8080/api/service/allByUser/" + userId)
   }
 
   findAllByUserAndType(userId: number,type:boolean) {
-    return this.http.get("http://localhost:8080/api/services/allByUser/" + userId+"/"+type);
+    return this.http.get("http://localhost:8080/api/service/allByUser/" + userId+"/"+type);
   }
 
   findOfferById(id:number){
-    return this.http.get<Offer>("http://localhost:8080/api/services/" + id)
+    return this.http.get<Offer>("http://localhost:8080/api/service/" + id)
   }
 
   updateService(offer:Offer, degital:boolean){
     if(degital){
-      return this.http.post<Offer>("http://localhost:8080/api/services/update",offer)
+      return this.http.post<Offer>("http://localhost:8080/api/service/update",offer)
     }else{
-      return this.http.post<Offer>("http://localhost:8080/api/services/updateIRL",offer)
+      return this.http.post<Offer>("http://localhost:8080/api/service/updateIRL",offer)
     }
    
   }
 
   getAllPaginServices(pageSize,pageNumber,title="",isDegital=false){
-    var url =`http://localhost:8080/api/services/?pageNumber=${pageNumber}&pageSize=${pageSize}&isDegital=${isDegital}&title=${title}`
+    var url =`http://localhost:8080/api/service/?pageNumber=${pageNumber}&pageSize=${pageSize}&isDegital=${isDegital}&title=${title}`
   
     return this.http.get<Offer[]>(url);
   }
@@ -90,7 +90,7 @@ export class OfferService {
   getAllServicesByType(type:boolean, title=''){
     console.log("service"+ title);
     
-    var url =`http://localhost:8080/api/services/isDegital/?type=${type}&title=${title}`
+    var url =`http://localhost:8080/api/service/isDegital/?type=${type}&title=${title}`
     
     return this.http.get<Offer[]>(url);
   }

@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminSidebarComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,private userS:UserService,private eventEmitter:EventemitterService,private auth:AuthService,) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private userS:UserService,private eventEmitter:EventemitterService,public auth:AuthService,) { }
 
   ngOnInit(): void {
     this.activatedRoute.snapshot.paramMap.get('currentView')

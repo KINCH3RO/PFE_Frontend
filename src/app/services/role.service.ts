@@ -12,6 +12,10 @@ export class RoleService {
   getAllRoles(){
      return this.http.get("http://localhost:8080/api/roles/all")
   }
+
+  getRoleByName(name:string){
+    return this.http.get<Role>("http://localhost:8080/api/roles/roleName/"+name)
+ }
   getAllPaginRoles(pageSize,pageNumber,name=""){
     var url =`http://localhost:8080/api/roles/?pageSize=${pageSize}&pageNumber=${pageNumber}&roleName=${name}`
   

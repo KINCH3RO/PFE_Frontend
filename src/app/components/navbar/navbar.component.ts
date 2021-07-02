@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit  {
 
   toggleNavbar(){
    
+    
     this.showNavBar=!this.showNavBar;
   }
   ngOnInit(): void {

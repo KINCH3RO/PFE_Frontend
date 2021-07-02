@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email.service';
 import { EventemitterService } from 'src/app/services/eventemitter.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { RoleService } from 'src/app/services/role.service';
@@ -18,21 +19,37 @@ import { UserService } from 'src/app/services/user.service';
 export class UserAccountComponent implements OnInit {
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private userS: UserService,
     private roleSer: RoleService,
     private eventEmitter: EventemitterService,
     private fb: FormBuilder,
     private actRoute: ActivatedRoute,
     private fileUpload: FileUploadService,
-    private elem: ElementRef) { }
+    private elem: ElementRef,
+    private emailSender: EmailService) { }
 
   currenTuser: User;
   userId: number;
   profilePic: string;
   roles: Observable<any>
-  isAdmin: boolean = true;
+  showModal = false;
+  paramValue;
 
+
+  emailForm = this.fb.group({
+
+    subject: ['', [Validators.required, Validators.minLength(3)]],
+    message: ['', [Validators.required, Validators.minLength(10)]],
+
+  })
+
+  get subject() {
+    return this.emailForm.get('subject');
+  }
+  get message() {
+    return this.emailForm.get('message');
+  }
   personalForm: FormGroup = this.fb.group({
     idUser: [''],
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -61,11 +78,12 @@ export class UserAccountComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.isAdmin=this.auth.containRole("USER_ADMIN")
+
     this.displayData();
   }
 
   async displayData() {
+    this.paramValue = parseInt(this.actRoute.snapshot.paramMap.get("id")) ? parseInt(this.actRoute.snapshot.paramMap.get("id")) : null;
     this.userId = parseInt(this.actRoute.snapshot.paramMap.get("id")) ? parseInt(this.actRoute.snapshot.paramMap.get("id")) : parseInt(JSON.parse(localStorage.getItem(this.auth.storageKey)).idUser)
 
     await this.userS.getUserById(this.userId).toPromise().then(data => {
@@ -154,12 +172,20 @@ export class UserAccountComponent implements OnInit {
     })
   }
 
-  async updateAccountPreInfo() {
+  updateAccountPreInfo() {
     let newRoles: Role[] = []
     let checkedElements = 0;
 
     var updatedUser: User = new User(this.currenTuser);
     updatedUser.accountStatus = this.accountStatus.value;
+
+
+    if (updatedUser.accountStatus != "normal" && updatedUser.accountStatus != this.currenTuser.accountStatus && this.currenTuser.idUser != this.auth.localUserId()) {
+
+      this.showModal = true;
+      this.subject.setValue("your account has been " + updatedUser.accountStatus)
+    }
+
 
     var rolesControls = this.elem.nativeElement.querySelectorAll('.roles');
     updatedUser.role.length = 0
@@ -167,7 +193,7 @@ export class UserAccountComponent implements OnInit {
       if (element.checked) {
         checkedElements++;
 
-        updatedUser.role.push({ idRole: element.id })
+        updatedUser.role.push({ idRole: element.id, roleName: element.name })
       }
     });
 
@@ -176,10 +202,35 @@ export class UserAccountComponent implements OnInit {
       return;
     }
 
+    let mappedRoles = updatedUser.role.map(x => x.roleName)
+
+    if (!mappedRoles.includes("ADMIN") && this.currenTuser.idUser == this.auth.localUserId()) {
+      this.eventEmitter.showPopUP({ type: "info", message: "You cant remove admin role from yourself" })
+      return;
+    }
+    if (mappedRoles.includes("ADMIN") && mappedRoles.includes("SUPPORT") ||
+      mappedRoles.includes("USER_ADMIN") && mappedRoles.includes("SUPPORT")) {
+      this.eventEmitter.showPopUP({ type: "info", message: "User cannot has Administratif role and Support role" })
+      return;
+    }
+
+    if (mappedRoles.includes("ADMIN") && mappedRoles.includes("SELLER") ||
+      mappedRoles.includes("USER_ADMIN") && mappedRoles.includes("SELLER")) {
+      this.eventEmitter.showPopUP({ type: "info", message: "User cannot has Administratif role and Seller role" })
+      return;
+    }
+
+    if (mappedRoles.includes("ADMIN") && mappedRoles.includes("BUYER") ||
+      mappedRoles.includes("USER_ADMIN") && mappedRoles.includes("BUYER")) {
+      this.eventEmitter.showPopUP({ type: "info", message: "User cannot has Administratif role and Buyer role" })
+      return;
+    }
 
 
 
-    await this.userS.updateUser(updatedUser).toPromise().then(data => {
+
+
+    this.userS.updateUser(updatedUser).toPromise().then(data => {
       this.eventEmitter.showPopUP({ type: "success", message: "account status info has been updated" })
 
     }).catch(err => {
@@ -196,7 +247,7 @@ export class UserAccountComponent implements OnInit {
     }
     return false;
   }
-  
+
   get accountStatus() {
     return this.accountPreForm.get('accountStatus');
   }
@@ -269,5 +320,16 @@ export class UserAccountComponent implements OnInit {
     this.profilePic = "http://localhost:8080/api" + updatedUser.profilePhotoUrl
 
 
+  }
+
+  sendEmail() {
+    if (this.emailForm.valid) {
+      this.emailSender.sendEmail(this.subject.value, this.message.value, this.currenTuser.email).toPromise().then(data => {
+        this.eventEmitter.showPopUP({ type: "info", message: "email has been sent succesfully" })
+      }).catch(err => {
+        this.eventEmitter.showPopUP({ type: "error", message: "error occured sending email" })
+      });
+      this.showModal = false;
+    }
   }
 }

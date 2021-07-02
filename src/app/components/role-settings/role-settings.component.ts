@@ -39,18 +39,12 @@ export class RoleSettingsComponent implements OnInit {
   pageNumber: number = 0;
 
   roleName: string;
-  mandatoryRoles = ['ADMIN', 'USER_ADMIN', 'SUPPORT', 'USER']
+  mandatoryRoles = ['ADMIN', 'USER_ADMIN', 'SUPPORT', 'USER',"BUYER","SELLER"]
   deleteRoleName: string;
-
-
   addRole = true;
   updateRole() {
 
-
-
     if (this.roleForm.valid) {
-
-
       if (this.addRole) {
         this.roleSer.addRole(this.roleForm.value).toPromise().then(data => {
           this.eventEmitter.showPopUP({ type: "success", message: "role has been added" })

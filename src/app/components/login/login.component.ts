@@ -132,8 +132,17 @@ export class LoginComponent implements OnInit {
 
   signUp() {
 
+    
 
     if (this.signUpForm.valid) {
+      let ageDif = parseInt(new Date().getFullYear().toString()) - parseInt(new Date(this.borndate.value).getFullYear().toString())
+       if(ageDif <=14){
+        this.eventEmitter.showPopUP({ type: 'info', message: "You must be older then 14 years old" })
+        return;
+       }
+
+
+     
       this.loading = true;
       console.log(this.signUpForm.value)
       this.auth.signUp(this.signUpForm.value).then(data => {

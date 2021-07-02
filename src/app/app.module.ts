@@ -52,6 +52,19 @@ import { EntreprisePageComponent } from './components/entreprise/entreprise-page
 import { MyEntreprisesComponent } from './components/entreprise/my-entreprises/my-entreprises.component';
 import { ViewParticipantsComponent } from './components/entreprise/view-participants/view-participants.component';
 import { EntreprisesComponent } from './components/entreprise/entreprises/entreprises.component';
+import { ChatPageComponent } from './components/chat/chat-page/chat-page.component';
+import { ChatSupportComponent } from './components/chat/chat-support/chat-support.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { PaymentPageComponent } from './components/payment/payment-page/payment-page.component';
+import { PaymentHistoriqueComponent } from './components/payment/payment-historique/payment-historique.component';
+import { AdminPaymentListComponent } from './components/payment/admin-payment-list/admin-payment-list.component';
+import { CheckoutPageComponent } from './components/payment/checkout-page/checkout-page.component';
+import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
+import { ShareModule } from 'ngx-sharebuttons';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ManageProfilesComponent } from './components/manage-profiles/manage-profiles.component';
+
 
 
 
@@ -103,26 +116,33 @@ import { EntreprisesComponent } from './components/entreprise/entreprises/entrep
     MyEntreprisesComponent,
     ViewParticipantsComponent,
     EntreprisesComponent,
+    ChatPageComponent,
+    ChatSupportComponent,
+    StatisticsComponent,
+    PaymentPageComponent,
+    PaymentHistoriqueComponent,
+    AdminPaymentListComponent,
+    CheckoutPageComponent,
+    ManageProfilesComponent,
 
-    
-  
+
+
 
 
   ],
   imports: [
-
     BrowserModule,
-  
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    
-
+    ShareIconsModule,
+   ShareButtonsModule,
+    NgxEmojiPickerModule.forRoot()
 
   ],
-  providers: [FormBuilder,EventemitterService,AuthService],
+  providers: [FormBuilder, EventemitterService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

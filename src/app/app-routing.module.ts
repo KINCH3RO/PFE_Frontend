@@ -40,11 +40,19 @@ import { EntreprisePageComponent } from './components/entreprise/entreprise-page
 import { MyEntreprisesComponent } from './components/entreprise/my-entreprises/my-entreprises.component';
 import { EntreprisesComponent } from './components/entreprise/entreprises/entreprises.component';
 import { ViewParticipantsComponent } from './components/entreprise/view-participants/view-participants.component';
+import { ChatPageComponent } from './components/chat/chat-page/chat-page.component';
+import { PaymentPageComponent } from './components/payment/payment-page/payment-page.component';
+import { CheckoutPageComponent } from './components/payment/checkout-page/checkout-page.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { ChatSupportComponent } from './components/chat/chat-support/chat-support.component';
+import { RoleGuard } from './guards/role.guard';
+import { ManageProfilesComponent } from './components/manage-profiles/manage-profiles.component';
+import { ProfileGuard } from './guards/profile.guard';
 
 
 const routes: Routes = [
 
-  { path: '', redirectTo:'home',pathMatch:'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
 
   {
@@ -70,27 +78,32 @@ const routes: Routes = [
   {
     path: 'user', children: [
       { path: '', component: UserAccountComponent },
-      { path: ':id', component: UserAccountComponent },
+      { path: ':id', component: UserAccountComponent, canActivate: [RoleGuard], data: { roles: ["USER_ADMIN", "ADMIN"] } },
     ]
   },
 
   {
-    path: 'panel', component: AdminPanelComponent, children: [
+    path: 'panel', component: AdminPanelComponent, canActivate: [RoleGuard], data: { roles: ["USER_ADMIN", "ADMIN"] }, children: [
       { path: 'accounts', component: ManageAccountsComponent, },
-      { path: 'roles', component: RoleSettingsComponent },
-      { path: 'categories', component: ManageCategoriesComponent },
-      { path: 'irlCategories', component: ManageIrlCatComponent },
-      { path: 'subCats/:id', component: ManageSubCatComponent }
+      { path: 'roles', component: RoleSettingsComponent, canActivate: [RoleGuard], data: { roles: ["ADMIN"] } },
+      { path: 'profiles', component: ManageProfilesComponent, canActivate: [RoleGuard], data: { roles: ["USER_ADMIN"] } },
+      { path: 'categories', component: ManageCategoriesComponent, canActivate: [RoleGuard], data: { roles: ["ADMIN"] } },
+      { path: 'irlCategories', component: ManageIrlCatComponent, canActivate: [RoleGuard], data: { roles: ["ADMIN"] } },
+      { path: 'subCats/:id', component: ManageSubCatComponent, canActivate: [RoleGuard], data: { roles: ["ADMIN"] } }
     ]
   },
   {
-    path: "CreationSteps", component: ProfileCreationStepsComponent
+    path: "CreationSteps", component: ProfileCreationStepsComponent,
+    canActivate: [RoleGuard], data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
   },
   {
-    path: 'profileCreation', component: ProfileCreationWizardComponent, children: [
+    path: 'profileCreation', component: ProfileCreationWizardComponent,
+    canActivate: [RoleGuard], data: {
+      roles: ["ADMIN", "USER_ADMIN"], exist: false
+    },
+    children: [
 
       { path: '', component: ProfileBasicInfoComponent },
-
       { path: 'pro', component: ProfileProfInfoComponent },
       { path: 'Aac', component: ProfileAssociatedAccountsComponent },
       { path: 'finished', component: ProfileFinishedComponent }
@@ -99,7 +112,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'serviceCreation', component: StepsPageComponent, children: [
+    path: 'serviceCreation', component: StepsPageComponent, canActivate: [RoleGuard, ProfileGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }, children: [
 
 
       { path: 'basic', component: BasicInfoPageComponent },
@@ -110,24 +124,51 @@ const routes: Routes = [
 
     ]
   },
-  { path: 'myServices', component: MyServicesComponent },
+  {
+    path: 'myServices', component: MyServicesComponent, canActivate: [RoleGuard, ProfileGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
   { path: 'editService/:id', component: EditServiceComponent },
   { path: 'service/:id', component: ServicePageComponent },
   { path: 'services', component: SearchPageComponent },
   { path: 'mapSearch', component: ServicesMapComponent },
 
-  { path: 'createOrder', component: CreateOrderComponent },
-  { path: 'myOrders', component: MyOrdersComponent },
+  {
+    path: 'createOrder', component: CreateOrderComponent, canActivate: [RoleGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
+  {
+    path: 'myOrders', component: MyOrdersComponent, canActivate: [RoleGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
   { path: 'Orders', component: OrdersPageComponent },
   { path: 'editOrder/:id', component: CreateOrderComponent },
   { path: 'sumbittedOffers/:id', component: SubmittedOffersComponent },
 
-  { path: 'createEntreprise', component: CreateEntrepriseComponent },
+  {
+    path: 'createEntreprise', component: CreateEntrepriseComponent, canActivate: [RoleGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
   { path: 'editEntreprise/:id', component: CreateEntrepriseComponent },
   { path: 'entreprise/:id', component: EntreprisePageComponent },
-  { path: 'myEntreprises', component: MyEntreprisesComponent },
+  {
+    path: 'myEntreprises', component: MyEntreprisesComponent, canActivate: [RoleGuard, ProfileGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
   { path: 'entreprises', component: EntreprisesComponent },
-  { path: 'entreprise/:id/:recId', component: ViewParticipantsComponent },
+  {
+    path: 'entreprise/:id/:recId', component: ViewParticipantsComponent, canActivate: [RoleGuard, ProfileGuard],
+    data: { roles: ["ADMIN", "USER_ADMIN"], exist: false }
+  },
+
+  { path: 'chat', component: ChatPageComponent },
+  { path: 'chat/support', component: ChatSupportComponent },
+  { path: 'chat/:id', component: ChatPageComponent },
+
+
+  { path: 'payment', component: PaymentPageComponent },
+  { path: 'checkout', component: CheckoutPageComponent },
+  { path: 'stats', component: StatisticsComponent },
 
 
 

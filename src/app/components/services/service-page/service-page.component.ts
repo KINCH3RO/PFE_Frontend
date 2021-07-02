@@ -6,6 +6,8 @@ import { MarkerData } from 'src/app/models/marker-data';
 import { Offer } from 'src/app/models/offer';
 import { Plan } from 'src/app/models/plan';
 import { Profile } from 'src/app/models/profile';
+import { AuthService } from 'src/app/services/auth.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { environment } from 'src/environments/environment';
@@ -21,12 +23,13 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
   constructor(private offerSer: OfferService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private profileSer: ProfileService) {
+    private profileSer: ProfileService,
+    private chatSer:ChatService,
+    private auth:AuthService) {
 
   }
 
   features: MarkerData[] = []
-
   imagesArray = [];
   videosArray = [];
   packages: Plan[] = [];
@@ -45,11 +48,16 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
     }
 
     this.offerSer.findOfferById(id).toPromise().then(data => {
+
+
       this.currentService = data;
       this.imagesArray = this.currentService.serviceImageUrl;
       this.videosArray = this.currentService.videoImageUrl;
-      this.packages = data.plans;
-      this.sort();
+      if (data.degital) {
+        this.packages = data.plans;
+        this.sort();
+      }
+
       this.features.push({
         header: (this.currentService.user.name + ' ' + this.currentService.user.familyName),
         description: this.currentService.title,
@@ -57,9 +65,7 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
         imageUrl: this.currentService.serviceImageUrl[this.currentService.mainPhotoIndex],
         headerLink: "/profile/" + this.currentService.user.idUser,
         bottomLink: "/service/" + this.currentService.id,
-
       })
-
       this.profileSer.getProfileByUser(data.user).toPromise().then(data => {
         this.profile = data;
       }).catch(err => {
@@ -107,11 +113,20 @@ export class ServicePageComponent implements OnInit, AfterViewInit {
 
     await new Promise(r => setTimeout(r, 500));
     let carousel = document.querySelector('.carousel');
-    console.log(carousel);
+
     let flick = new flickity(carousel, {
       imagesLoaded: true,
 
     });
+  }
+
+  contact() {
+   
+    this.chatSer.addChat(this.auth.localUserId(),this.currentService.user.idUser).toPromise().then(data => {
+      this.router.navigateByUrl('/chat/'+data.channel_Id);
+    });
+
+
   }
 
 }

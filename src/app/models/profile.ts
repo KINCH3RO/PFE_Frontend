@@ -12,7 +12,8 @@ export class Profile {
     speciality:string;
     primaryLanguage:string;
     completed:boolean;
-   
+    blocked:boolean;
+
     educations:[]
     certifications:[]
     occupations:[]

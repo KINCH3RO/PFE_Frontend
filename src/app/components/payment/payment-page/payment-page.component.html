@@ -1,0 +1,88 @@
+<div class="flex items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-8 over">
+
+    <!-- Component Start -->
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 w-full max-w-screen-lg">
+        <div class="lg:col-span-2">
+            <h2 class="text-sm font-medium">Customize your Package</h2>
+            <div class="bg-white rounded mt-4 shadow-lg">
+
+                <div class="border-t border-b p-5 ">
+                    <div class="service flex ">
+                        <img class="w-40 h-20 mr-4"
+                            src="https://blog.planview.com/wp-content/uploads/2020/01/Top-6-Software-Development-Methodologies.jpg"
+                            alt="">
+                        <div class="info  flex justify-between flex-col w-full">
+                            <h2 class="max-w-xs">I will develop a Full stack website</h2>
+                            <div class="price flex w-full justify-between">
+                                <h1 class="text-gray-500">10 DH</h1>
+                                <div class="flex">
+                                    <h1 class="text-gray-500 mr-2">Qte</h1>
+                                    <select name="" id="">
+                                        <option *ngFor='let in of counter(20) ;let i = index'>{{i}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="p-5">
+                    I will code literally about anything that you can think of! From a function written in Java, a
+                    single webpage, a twitter scraping bot, an excel finance-accounting spreadsheet, to your projects.
+
+                    My knowledge in a plethora of languages will enable us to finish your work on time and submit your
+                    required deliverables. I will be on the ball, checking in with the progress with you to ensure
+                    quality work.
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-sm font-medium">Purchase Summary</h2>
+            <div class="bg-white rounded mt-4 shadow-lg py-6">
+                <div class="px-8 mt-4">
+                    <div class="flex items-end justify-between">
+                        <span class="text-sm font-semibold">Delivery Time</span>
+                        <span class="text-sm text-gray-500 mb-px">3 Days</span>
+                    </div>
+                </div>
+
+                <div class="px-8 mt-4">
+                    <div class="flex items-end justify-between">
+                        <span class="text-sm font-semibold">Price</span>
+                        <span class="text-sm text-gray-500 mb-px">10DH</span>
+                    </div>
+                </div>
+               
+                <div class="px-8 mt-4">
+                    <div class="flex items-end justify-between">
+                        <span class="text-sm font-semibold">Tax</span>
+                        <span class="text-sm text-gray-500 mb-px">20%</span>
+                    </div>
+                </div>
+                <div class="px-8 mt-4 border-t pt-4">
+                    <div class="flex items-end justify-between">
+                        <span class="font-semibold">Total price</span>
+                        <span class="font-semibold">12DH</span>
+                    </div>
+                 
+                </div>
+                <div class="flex items-center px-8 mt-8">
+                    <input id="termsConditions" type="checkbox">
+                    <label class="text-xs text-gray-500 ml-2" for="termsConditions">I agree to the terms and
+                        conditions.</label>
+                </div>
+                <div class="flex flex-col px-8 pt-4">
+                    <button
+                        class="flex items-center justify-center bg-blue-600 text-sm font-medium w-full h-10 rounded text-blue-50 hover:bg-blue-700">Proceed to checkout
+                        </button>
+                    <button class="text-xs text-blue-500 mt-3 underline">Have a coupon code?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Component End  -->
+
+</div>

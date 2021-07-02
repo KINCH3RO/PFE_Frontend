@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EntrepriseService } from 'src/app/services/entreprise.service';
 import { EventemitterService } from 'src/app/services/eventemitter.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { SocketService } from 'src/app/services/socket.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,12 +21,13 @@ import { environment } from 'src/environments/environment';
 export class EntreprisePageComponent implements OnInit {
 
   constructor(
-    private entrepriseSer: EntrepriseService,
+    public entrepriseSer: EntrepriseService,
     private activatedRoute: ActivatedRoute,
     public auth: AuthService,
     private fb: FormBuilder,
     private eventEmitter: EventemitterService,
-    private fileUpload: FileUploadService) { }
+    private fileUpload: FileUploadService
+    ) { }
 
 
   env;
@@ -41,7 +43,7 @@ export class EntreprisePageComponent implements OnInit {
   recruitments: Recruitments[] = [];
   enPosts: EntreprisePosts[] = [];
   jobInfo: string;
-
+  stompClient;
   // 0 = RecruitmentForm , 1 = job info , 2 = posts
   modalIndex = 0;
 
@@ -107,9 +109,10 @@ export class EntreprisePageComponent implements OnInit {
     let paramValue = this.activatedRoute.snapshot.paramMap.get('id');
     if (parseInt(paramValue)) {
       this.displayData(parseInt(paramValue));
+
+     
+
     }
-
-
   }
 
 
@@ -124,6 +127,8 @@ export class EntreprisePageComponent implements OnInit {
 
 
   }
+
+ 
 
   isparticipating(recruitmentID) {
 
@@ -141,6 +146,10 @@ export class EntreprisePageComponent implements OnInit {
     if (index != -1) {
       this.recruitments[id].participants.splice(index, 1);
       this.entrepriseSer.updateEntreprise(this.currentEntreprise).toPromise().then(data => {
+
+
+
+ 
         this.eventEmitter.showPopUP({ message: "You are succesfully unparticipated", type: "info" })
       }).catch(err => {
         this.eventEmitter.showPopUP({ message: "an error occured", type: "error" })
@@ -148,6 +157,8 @@ export class EntreprisePageComponent implements OnInit {
     }
 
   }
+
+
   participate(id) {
 
 
@@ -160,8 +171,6 @@ export class EntreprisePageComponent implements OnInit {
     }
 
 
-
-
     if (!this.recruitments[id].participants) {
       this.recruitments[id].participants = [];
     }
@@ -169,7 +178,12 @@ export class EntreprisePageComponent implements OnInit {
 
     this.recruitments[id].participants.push(this.auth.localUser())
     this.entrepriseSer.updateEntreprise(this.currentEntreprise).toPromise().then(data => {
+
+     
+
+     
       this.eventEmitter.showPopUP({ message: "You are succesfully participating", type: "info" })
+
     }).catch(err => {
       this.eventEmitter.showPopUP({ message: "an error occured", type: "error" })
     })
@@ -208,7 +222,7 @@ export class EntreprisePageComponent implements OnInit {
       if (this.selectedFile) {
         await this.fileUpload.uploadFileEntreprise(this.selectedFile).then(data => {
           this.imageUrl.setValue("/static/UploadedFiles/Images/" + data);
-         
+
 
 
         }).catch(err => {
@@ -219,17 +233,17 @@ export class EntreprisePageComponent implements OnInit {
       }
 
 
-      await new Promise(x=>setTimeout(x,3000))
+      await new Promise(x => setTimeout(x, 3000))
       this.enPosts.push(this.postForm.value);
 
-      
-  
-      this.currentEntreprise.entreprisePosts=this.enPosts;
+
+
+      this.currentEntreprise.entreprisePosts = this.enPosts;
 
       this.entrepriseSer.updateEntreprise(this.currentEntreprise).toPromise().then(data => {
         this.eventEmitter.showPopUP({ message: "Post added Succesfully", type: "info" })
         this.postForm.reset();
-        this.imageValue=null;
+        this.imageValue = null;
         this.closeModal();
       }).catch(err => {
         this.eventEmitter.showPopUP({ message: "an error occured", type: "error" })

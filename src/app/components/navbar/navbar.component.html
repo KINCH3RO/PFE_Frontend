@@ -71,15 +71,15 @@
             <div *ngIf="profile" [ngClass]="{'md:opacity-0':show,'md:hidden':show}"
                 class=" sm:opacity-1  flex    dropdown bg-white transform md:-translate-x-32 transition-all duration-500 md:translate-y-7  flex-col md:absolute md:shadow md:w-40 ">
                 <a (click)='show=true' routerLinkActive="active" class="link mx-3 md:mx-0 px-12 " routerLink="user">Account settings</a>
-                <a (click)='show=true' routerLinkActive="active" *ngIf="hasProfile" routerLink="/profile" class="link  mx-3 md:mx-0  ">Profile</a>
-                <a (click)='show=true' routerLinkActive="active" *ngIf="hasProfile" routerLink="/myServices" class="link  mx-3 md:mx-0  ">My
+                <a (click)='show=true' *ngIf="!auth.containRole('USER_ADMIN') && !auth.containRole('ADMIN') && auth.containRole('SELLER')" routerLinkActive="active"  routerLink="/profile" class="link  mx-3 md:mx-0  ">Profile</a>
+                <a (click)='show=true' *ngIf="!auth.containRole('USER_ADMIN') && !auth.containRole('ADMIN') && auth.containRole('SELLER') "  routerLinkActive="active"  routerLink="/myServices" class="link  mx-3 md:mx-0  ">My
                     Services</a>
-                <a (click)='show=true' routerLinkActive="active" routerLink="/myOrders" class="link mx-3 md:mx-0">My Orders</a>
-                <a (click)='show=true' routerLinkActive="active" routerLink="/myEntreprises" class="link mx-3 md:mx-0">My Entreprises</a>
-                <a (click)='show=true' routerLinkActive="active" *ngIf="!hasProfile" routerLink="/CreationSteps" class="link mx-3 md:mx-0"
+                <a (click)='show=true' *ngIf="!auth.containRole('USER_ADMIN') && !auth.containRole('ADMIN')"  routerLinkActive="active" routerLink="/myOrders" class="link mx-3 md:mx-0">My Orders</a>
+                <a (click)='show=true' *ngIf="!auth.containRole('USER_ADMIN') && !auth.containRole('ADMIN')"  routerLinkActive="active" routerLink="/myEntreprises" class="link mx-3 md:mx-0">My Entreprises</a>
+                <a (click)='show=true'  *ngIf="!auth.containRole('USER_ADMIN') && !auth.containRole('ADMIN') && !auth.containRole('SELLER')"  routerLinkActive="active"  routerLink="/CreationSteps" class="link mx-3 md:mx-0"
                   >Create a
                     profile</a>
-                <a (click)='show=true' routerLinkActive="active" routerLink="/panel" class="link mx-3 md:mx-0" href="">Admin settings</a>
+                <a (click)='show=true' *ngIf="auth.containRole('USER_ADMIN') || auth.containRole('ADMIN')" routerLinkActive="active" routerLink="/panel" class="link mx-3 md:mx-0" href="">Admin settings</a>
                 <a (click)="logout()"
                     class=" mx-3 md:mx-0 px-3 py-2 rounded-sm hover:shadow duration-500 transition-colors hover:text-white hover:bg-red-500 my-2 md:my-0"
                     href="">Log out</a>

@@ -1,0 +1,217 @@
+<!-- component -->
+<div class="flex max-h-full fixed antialiased text-gray-800 w-screen h-full">
+  <div class="flex flex-row max-h-full w-full overflow-x-hidden">
+
+    <div class="flex flex-col flex-auto h-full p-6">
+      
+      <div class="flex flex-col flex-auto rounded-2xl bg-gray-100 max-h-full overflow-y-auto  p-4">
+        <div class=" h-4/5 flex flex-col overflow-x-auto mb-4">
+          <div class="flex flex-col h-full  ">
+           
+            <div class="banner flex bg-white p-2 rounded-md mb-2">
+              <img class="w-9  h-9 rounded-full mr-2 "
+                src="http://localhost:8080/api//static/UploadedFiles/Images/profilePicK99HF8Y.png" alt="">
+              <div class=" flex flex-col justify-between">
+                <div class="text-sm">Hatim Rachid</div>
+                <div class="text-xs">Support</div>
+              </div>
+            </div>
+            <div #target class="grid grid-cols-12 gap-y-2 max-h-full overflow-y-auto ">
+
+              <div (mouseover)="showButtons=i" (mouseout)="showButtons=-1"
+                [ngClass]="{'myMessage':message.senderid===myId,'othersMessage':message.senderid!==myId}"
+                *ngFor="let message of messages;let i=index">
+
+                <!-- messages -->
+                <div
+                  [ngClass]="{'myMessageContent':message.senderid===myId,'otherMessageContent':message.senderid!==myId}">
+                  <div class="flex items-center justify-center h-10 w-10 rounded-full bg-blue-500 flex-shrink-0">
+                    <span *ngIf="!getUser(message.senderid).profilePhotoUrl">{{getUser(message.senderid).name[0]
+                      | uppercase}}</span>
+                    <img *ngIf="getUser(message.senderid).profilePhotoUrl"
+                      class="w-full h-full rounded-full object-cover"
+                      src="{{env.endPoint+getUser(message.senderid).profilePhotoUrl}}" alt="">
+                  </div>
+                  <div [ngClass]="{'myMessageText':message.senderid===myId,'otherMessageText':message.senderid!==myId}">
+                    <div>
+
+                      <img class="mb-2 rounded-md" *ngIf="message.messageType=='image'"
+                        src="{{env.endPoint+message.fileUrl}}" alt="">
+                      <video class="mb-2 rounded-md" controls loop *ngIf="message.messageType=='video'"
+                        src="{{env.endPoint+message.fileUrl}}"></video>
+                      <div *ngIf="message.messageType=='file'"
+                        class="pl-3 pr-4 py-3 flex items-center justify-between text-sm w-96">
+                        <div class="w-0 flex-1 flex items-center">
+                          <!-- Heroicon name: solid/paper-clip -->
+                          <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                              d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                              clip-rule="evenodd" />
+                          </svg>
+                          <span class="ml-2 flex-1 w-0 truncate">
+                            {{message.originalFileName}}
+                          </span>
+                        </div>
+                        <div class="ml-4 flex-shrink-0">
+                          <a (click)="downloadFile(message.fileUrl,message.originalFileName)"
+                            class="cursor-pointer font-medium text-blue-600 hover:text-blue-500">
+                            Download
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="w-96 bg-white" *ngIf="message.messageType=='customOffer'">
+                        <div *ngIf="message.customOfferTargetedOffer"
+                          class=" w-full offer shadow rounded-md mb-2  md:w-full col-span-1 md:col-span-3 transition-colors cursor-pointer hover:bg-gray-100">
+                          <div class="cover-Photo mb-2 w-full h-28 ">
+                            <img class="offer-image rounded-t-md w-full h-full object-cover mb-3"
+                              src="http://localhost:8080/api/{{message.customOfferTargetedOffer.serviceImageUrl[message.customOfferTargetedOffer.mainPhotoIndex]}}"
+                              alt="">
+                          </div>
+                          <div class="offers-info  px-2 py-1">
+                            <div class=" cursor-pointer seller-info  flex mb-2 justify-between">
+                              <div routerLink="/profile" class="flex cursor-pointer hover:text-blue-500">
+                                <img *ngIf="message.customOfferTargetedOffer.user.profilePhotoUrl"
+                                  class="w-9 h-9 object-cover border-2 rounded-full  mr-2"
+                                  src="http://localhost:8080/api/{{message.customOfferTargetedOffer.user.profilePhotoUrl}}"
+                                  alt="">
+                                <img *ngIf="!message.customOfferTargetedOffer.user.profilePhotoUrl"
+                                  class="w-9 h-9 object-cover border-2 rounded-full  mr-2" src="" alt="">
+
+
+                                <span
+                                  class="mt-auto text-black hover:text-blue-500">{{message.customOfferTargetedOffer.user.name
+                                  + ' ' +
+                                  message.customOfferTargetedOffer.user.familyName}}</span>
+                              </div>
+
+
+
+                            </div>
+                            <div class="text-sm">{{message.customOfferTargetedOffer.title}}
+                            </div>
+                          </div>
+                          <div class="h-px w-full bg-gray-300 mt-2 "></div>
+                          <div class="flex flex-col p-5 px-2">
+                            <div class="mb-2 text-gray-400">Description</div>
+                            <div class="text-black break-words">
+                              {{message.customOfferDescription}}</div>
+                          </div>
+
+                          <div class="h-px w-full bg-gray-300 mt-2 "></div>
+                          <div class="flex flex-col p-5 px-2">
+                            <div class="mb-2 text-gray-400">Price</div>
+                            <div class="flex justify-start">
+                              <div class="price mr-2">{{message.customOfferPrice
+                                |currency:'MAD'}} /</div>
+                              <div class="deltime">{{message.customOfferDelTime+'
+                                '+message.customOfferDelUnit}}</div>
+                            </div>
+                          </div>
+                          <div class="h-px w-full bg-gray-300 mt-2 "></div>
+                          <div class="flex flex-col p-5 px-2">
+                            <button type="submit"
+                              class=" inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                              Buy
+                            </button>
+                          </div>
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+                      <div *ngIf="message.content" class="text">{{message.content}}</div>
+
+
+                    </div>
+
+                    <div class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500 flex justify-between">
+                      <div *ngIf="message.action=='Update'">Edited</div>
+                      <!-- <div>seen</div> -->
+
+                    </div>
+
+                  </div>
+                </div>
+                <!-- action buttons -->
+                <div *ngIf="message.senderid===myId" [ngClass]="{'opacity-100':showButtons==i}"
+                  class="flex my-auto mr-2 opacity-0">
+                  <svg (click)="deleteMessage(message)" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="text-gray-500 hover:text-blue-500 cursor-pointer mr-2"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                  </svg>
+                  <svg (click)="Editmessage(message)" *ngIf="message.messageType=='text'"
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="text-gray-500 hover:text-blue-500 cursor-pointer mr-2" viewBox="0 0 16 16">
+                    <path
+                      d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
+          <div class="flex">
+            <button (click)=openFile()
+              class="flex items-center justify-center text-gray-400 hover:text-gray-600 focus:outline-none mr-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                </path>
+              </svg>
+
+              <input (change)="onFileSelected($event)" type="file" class="hidden" id="file">
+            </button>
+
+          
+          </div>
+          <div class="flex-grow ml-4">
+            <div class="relative w-full">
+              <input [(ngModel)]="message" type="text" (keydown.enter)="sendMessage()" (click)="scrollToElement()"
+                class="flex w-full border rounded-xl focus:outline-none border-gray-200 outline-none focus:border-blue-300 pl-4 h-10" />
+              <button
+                class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600 focus:outline-none">
+
+                <!-- <i (click)="toggled = !toggled" [(emojiPickerIf)]="toggled"
+                                    [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                                    (emojiPickerSelect)="handleSelection($event)"> <svg class="w-6 h-6" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg></i> -->
+              </button>
+            </div>
+          </div>
+          <div class="ml-4">
+            <button (click)="sendMessage()"
+              class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+              <span>{{SendOrEdit}}</span>
+              <span class="ml-2">
+                <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

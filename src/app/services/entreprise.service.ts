@@ -1,32 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Entreprise } from '../models/entreprise';
+import { Recruitments } from '../models/recruitments';
+
+// Declare SockJS and Stomp
+//socket
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntrepriseService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-  addEntreprise(value){
-   return this.http.post<Entreprise>("http://localhost:8080/api/entreprises/add",value)
+  addEntreprise(value) {
+    return this.http.post<Entreprise>("http://localhost:8080/api/entreprises/add", value)
   }
 
-  updateEntreprise(value){
-    return  this.http.put<Entreprise>("http://localhost:8080/api/entreprises/update",value)
+  updateEntreprise(value) {
+    return this.http.put<Entreprise>("http://localhost:8080/api/entreprises/update", value)
   }
 
-  getEntreprise(id:number){
-    return  this.http.get<Entreprise>("http://localhost:8080/api/entreprises/"+id)
-  }
-  
-  deleteEntreprise(id:number){
-    return this.http.delete<Entreprise>("http://localhost:8080/api/entreprises/delete/"+id)
+  getEntreprise(id: number) {
+    return this.http.get<Entreprise>("http://localhost:8080/api/entreprises/" + id)
   }
 
-  getAll(){
+  deleteEntreprise(id: number) {
+    return this.http.delete<Entreprise>("http://localhost:8080/api/entreprises/delete/" + id)
+  }
+
+  getAll() {
     return this.http.get<Entreprise[]>("http://localhost:8080/api/entreprises/all")
   }
 
@@ -41,4 +45,7 @@ export class EntrepriseService {
 
     return this.http.get<Entreprise[]>(url);
   }
+
+
+ 
 }
